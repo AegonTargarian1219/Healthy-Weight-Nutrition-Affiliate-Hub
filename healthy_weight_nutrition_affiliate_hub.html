@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitMetrics Pro — BMI, Nutrition & Gym Affiliate Hub</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Vibrant 3-Tone Animated Gradient Background (Blue, Red, Yellow) */
+    .bg-gradient-vibrant {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 22%, #dc2626 50%, #ea580c 75%, #f59e0b 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Ambient Glowing Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(80px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: floatOrb 14s ease-in-out infinite alternate;
+    }
+    .orb-blue {
+      background: #0284c7;
+      width: 380px;
+      height: 380px;
+      top: -80px;
+      left: -80px;
+    }
+    .orb-red {
+      background: #ef4444;
+      width: 440px;
+      height: 440px;
+      bottom: 5%;
+      right: -80px;
+      animation-delay: -5s;
+    }
+    .orb-yellow {
+      background: #facc15;
+      width: 360px;
+      height: 360px;
+      top: 30%;
+      left: 70%;
+      animation-delay: -9s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(45px, 35px) scale(1.15); }
+    }
+
+    /* Glassmorphism Surface */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35),
+                  0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    }
+
+    /* Popping Tactile 3D Buttons */
+    .btn-pop {
+      position: relative;
+      transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 20px -4px rgba(220, 38, 38, 0.45),
+                  0 4px 6px -2px rgba(234, 179, 8, 0.35),
+                  0 -2px 0 0 rgba(0, 0, 0, 0.2) inset;
+    }
+    .btn-pop:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 28px -5px rgba(220, 38, 38, 0.55),
+                  0 6px 12px -2px rgba(249, 115, 22, 0.45),
+                  0 0 20px rgba(234, 179, 8, 0.5);
+    }
+    .btn-pop:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                  0 2px 0 0 rgba(0, 0, 0, 0.25) inset;
+    }
+
+    .btn-pop-blue {
+      box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.45),
+                  0 4px 6px -2px rgba(14, 165, 233, 0.35),
+                  0 -2px 0 0 rgba(0, 0, 0, 0.2) inset;
+    }
+    .btn-pop-blue:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 28px -5px rgba(37, 99, 235, 0.6),
+                  0 6px 12px -2px rgba(14, 165, 233, 0.5);
+    }
+    .btn-pop-blue:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-pop-emerald {
+      box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.45),
+                  0 4px 6px -2px rgba(5, 150, 105, 0.35),
+                  0 -2px 0 0 rgba(0, 0, 0, 0.2) inset;
+    }
+    .btn-pop-emerald:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 28px -5px rgba(16, 185, 129, 0.6),
+                  0 6px 12px -2px rgba(5, 150, 105, 0.5);
+    }
+    .btn-pop-emerald:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Unit toggle active styling */
+    .btn-unit-active {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Tab navigation active state */
+    .nav-tab-active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      border-color: rgba(234, 179, 8, 0.8);
+    }
+
+    /* Mascot Bobbing Animation */
+    .sticker-bounce {
+      animation: stickerBob 3s ease-in-out infinite alternate;
+    }
+    @keyframes stickerBob {
+      0% { transform: translateY(0) rotate(-1.5deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+      100% { transform: translateY(0) rotate(-1.5deg); }
+    }
+
+    .gauge-marker {
+      transition: left 0.6s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    /* Custom scrollbars */
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-gradient-vibrant min-h-screen text-slate-800 flex flex-col justify-between relative overflow-x-hidden p-3 sm:p-5 md:p-8">
+
+  <!-- Ambient Glowing Orbs -->
+  <div class="orb orb-blue"></div>
+  <div class="orb orb-red"></div>
+  <div class="orb orb-yellow"></div>
+
+  <!-- Top Global Affiliate Disclosure -->
+  <aside aria-label="Affiliate Disclosure" class="relative z-10 max-w-5xl mx-auto w-full mb-3">
+    <div class="flex items-center justify-between gap-3 px-4 py-2 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px]">✓</span>
+        <span><strong>Verified Partner Hub:</strong> Food and supplement links connect with certified vendors (Amazon, Instacart, Blinkit, iHerb). We may earn an affiliate commission at no extra cost to you.</span>
+      </div>
+      <span class="hidden md:inline-flex items-center gap-1 font-mono bg-yellow-400 text-slate-950 px-2 py-0.5 rounded font-black uppercase text-[10px]">
+        Promo: FITBUY15
+      </span>
+    </div>
+  </aside>
+
+  <!-- Global Header & Multi-Step Breadcrumb Navigation -->
+  <header class="relative z-10 max-w-5xl mx-auto w-full text-center mb-5">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/25 backdrop-blur-md border border-white/40 text-white text-xs sm:text-sm font-semibold tracking-wide uppercase shadow-sm mb-2.5">
+      <span class="w-2.5 h-2.5 rounded-full bg-yellow-300 animate-ping"></span>
+      Clinical Target & Body Transformation Portal
+    </div>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">
+      Healthy Weight & Performance Hub
+    </h1>
+    <p class="text-white/95 text-xs sm:text-sm md:text-base mt-1.5 max-w-2xl mx-auto font-medium drop-shadow-sm">
+      Calculate your clinical BMI range, discover customized whole food nutrition, and unlock weight-matched workout and supplement protocols.
+    </p>
+
+    <!-- Multi-Step Page Navigation Bar -->
+    <nav class="mt-5 max-w-3xl mx-auto flex items-center justify-center p-1.5 bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-white/20 gap-1.5 shadow-xl">
+      <button id="navBtnPage1" type="button" onclick="navigateToPage(1)" class="nav-tab-active flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer">
+        <span>⚖️</span>
+        <span class="hidden xs:inline">1. Calculator</span>
+        <span class="xs:hidden">BMI</span>
+      </button>
+      <button id="navBtnPage2" type="button" onclick="navigateToPage(2)" class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center gap-2">
+        <span>🥗</span>
+        <span class="hidden xs:inline">2. Food Suggestions</span>
+        <span class="xs:hidden">Diet</span>
+      </button>
+      <button id="navBtnPage3" type="button" onclick="navigateToPage(3)" class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center gap-2">
+        <span>🏋️</span>
+        <span class="hidden xs:inline">3. Gym & Supplements</span>
+        <span class="xs:hidden">Gym</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Multi-Page Card Container -->
+  <main class="relative z-10 max-w-5xl mx-auto w-full flex-grow flex items-center justify-center">
+    <div class="glass-card w-full rounded-3xl p-5 sm:p-7 md:p-9 shadow-2xl transition-all">
+
+      <!-- ========================================== -->
+      <!-- PAGE 1: DEDICATED BMI & HEALTHY WEIGHT CALC -->
+      <!-- ========================================== -->
+      <section id="page1View" class="space-y-6">
+        
+        <!-- View Title & Unit Selector -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-5 border-b border-slate-200/90 gap-4">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Step 1 of 3</span>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Clinical BMI & Target Weight Calculator</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Calculate your exact body mass category, healthy range, and custom avatar</p>
+          </div>
+
+          <!-- Metric / Imperial Unit Toggle -->
+          <div class="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
+            <button id="metricBtn" type="button" onclick="setUnitMode('metric')" class="btn-unit-active px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all">
+              Metric (cm / kg)
+            </button>
+            <button id="imperialBtn" type="button" onclick="setUnitMode('imperial')" class="px-4 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">
+              Imperial (ft-in / lbs)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Input Form Column -->
+          <form id="calcForm" class="lg:col-span-5 space-y-4" onsubmit="event.preventDefault(); calculateBMI();">
+            
+            <!-- Age Input -->
+            <div>
+              <label for="ageInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Age (Years) <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <input type="number" id="ageInput" min="2" max="120" placeholder="e.g. 26" required
+                       class="w-full px-4 py-3 rounded-xl border border-slate-300 font-semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 bg-white" />
+                <span class="absolute right-3.5 top-3.5 text-xs font-medium text-slate-400">yrs</span>
+              </div>
+              <p id="ageHint" class="text-[11px] text-slate-500 mt-1">Adult benchmark: 18.5 – 24.9 BMI (Seniors 65+ auto-adjusts to 22–27).</p>
+            </div>
+
+            <!-- Height: Metric View -->
+            <div id="heightMetricWrapper">
+              <label for="heightCmInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Height (Centimeters) <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <input type="number" id="heightCmInput" min="50" max="260" step="0.5" placeholder="e.g. 175"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-300 font-semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 bg-white" />
+                <span class="absolute right-3.5 top-3.5 text-xs font-medium text-slate-400">cm</span>
+              </div>
+            </div>
+
+            <!-- Height: Imperial View -->
+            <div id="heightImperialWrapper" class="hidden">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Height (Feet & Inches) <span class="text-red-500">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="relative">
+                  <input type="number" id="heightFeetInput" min="1" max="8" placeholder="5"
+                         class="w-full px-4 py-3 rounded-xl border border-slate-300 font-semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border-blue-600 bg-white" />
+                  <span class="absolute right-3.5 top-3.5 text-xs font-medium text-slate-400">ft</span>
+                </div>
+                <div class="relative">
+                  <input type="number" id="heightInchesInput" min="0" max="11.9" step="0.5" placeholder="9"
+                         class="w-full px-4 py-3 rounded-xl border border-slate-300 font-semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border-blue-600 bg-white" />
+                  <span class="absolute right-3.5 top-3.5 text-xs font-medium text-slate-400">in</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Weight -->
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="currentWeightInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Current Weight <span class="text-red-500">*</span>
+                </label>
+                <button type="button" onclick="document.getElementById('currentWeightInput').value=''" class="text-[11px] text-blue-600 font-semibold hover:underline bg-transparent border-0 cursor-pointer p-0">Clear</button>
+              </div>
+              <div class="relative">
+                <input type="number" id="currentWeightInput" min="15" max="400" step="0.1" placeholder="e.g. 70" required
+                       class="w-full px-4 py-3 rounded-xl border border-slate-300 font-semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 bg-white" />
+                <span id="weightUnitLabel" class="absolute right-3.5 top-3.5 text-xs font-medium text-slate-400">kg</span>
+              </div>
+            </div>
+
+            <!-- Biological Sex -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Biological Sex</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center justify-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer bg-white hover:bg-slate-50 transition text-sm font-semibold text-slate-700">
+                  <input type="radio" name="gender" value="male" checked class="text-blue-600 focus:ring-blue-500">
+                  <span>Male</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer bg-white hover:bg-slate-50 transition text-sm font-semibold text-slate-700">
+                  <input type="radio" name="gender" value="female" class="text-blue-600 focus:ring-blue-500">
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- POPPING SUBMIT BUTTON -->
+            <button type="submit" id="calcBtn" class="btn-pop w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-red-500 via-rose-600 to-amber-500 hover:from-red-600 hover:via-rose-700 hover:to-amber-600 text-white font-extrabold text-base tracking-wide flex items-center justify-center gap-2 cursor-pointer mt-2">
+              <svg class="w-5 h-5 text-yellow-200" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+              </svg>
+              <span>Calculate Body Mass</span>
+            </button>
+
+          </form>
+
+          <!-- Output Display Column -->
+          <div class="lg:col-span-7 bg-slate-50/90 p-5 sm:p-6 rounded-2xl border border-slate-200 space-y-6">
+            
+            <!-- Live Avatar Mascot & Calculated Score -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center gap-5">
+              
+              <!-- Dynamic Body Composition Sticker / Avatar -->
+              <div id="avatarStickerContainer" class="sticker-bounce shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center shadow-md p-2 border-2 bg-emerald-50 border-emerald-300">
+                <!-- SVG injected via JS -->
+              </div>
+
+              <!-- Metrics Text -->
+              <div class="flex-grow text-center sm:text-left">
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                  <span id="currentStatusBadge" class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    🌟 Optimal Healthy Range
+                  </span>
+                  <span id="bmiScoreBadge" class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                    BMI: 22.9
+                  </span>
+                </div>
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1.5">Recommended Target Weight</h3>
+                <div class="flex flex-wrap items-baseline justify-center sm:justify-start gap-2">
+                  <span id="resPrimaryWeight" class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">56.7 – 76.3 kg</span>
+                  <span id="resSecondaryWeight" class="text-xs sm:text-sm font-medium text-slate-500">(125.0 – 168.2 lbs)</span>
+                </div>
+                <p id="targetBmiText" class="text-[11px] text-slate-500 mt-1 font-medium">Standard Adult Target: 18.5 – 24.9 kg/m²</p>
+              </div>
+
+            </div>
+
+            <!-- Spectrum Gauge Bar -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold text-slate-600">
+                <span>Body Mass Spectrum</span>
+                <span id="gaugeStatusText" class="text-xs font-bold text-slate-700">Healthy Zone</span>
+              </div>
+
+              <!-- 4-Tone bar -->
+              <div class="relative w-full h-4 rounded-full overflow-hidden flex shadow-inner">
+                <div class="h-full bg-blue-400 w-1/4" title="Underweight (&lt; 18.5)"></div>
+                <div class="h-full bg-emerald-500 w-1/4" title="Healthy Weight (18.5 - 24.9)"></div>
+                <div class="h-full bg-amber-400 w-1/4" title="Overweight (25 - 29.9)"></div>
+                <div class="h-full bg-rose-500 w-1/4" title="Obesity (≥ 30)"></div>
+              </div>
+
+              <div class="flex justify-between text-[10px] font-bold text-slate-400 px-0.5">
+                <span>Underweight (&lt;18.5)</span>
+                <span class="text-emerald-700 font-extrabold">Healthy (18.5-24.9)</span>
+                <span>Overweight (25-29.9)</span>
+                <span class="text-rose-600">Obese (30+)</span>
+              </div>
+
+              <!-- Marker for Current BMI -->
+              <div class="relative w-full h-5 mt-1">
+                <div id="gaugeMarker" class="gauge-marker absolute top-0 -ml-2.5 flex flex-col items-center" style="left: 45%;">
+                  <span class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-md"></span>
+                  <span id="markerLabel" class="text-[10px] font-extrabold text-slate-800 whitespace-nowrap mt-0.5">22.9 BMI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feedback Summary Card -->
+            <div id="comparisonBox" class="p-3.5 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900 text-xs sm:text-sm">
+              <strong>Assessment:</strong> You are currently right in the optimal clinical target range. Explore tailored whole foods or power up your training with our advanced exercise routines!
+            </div>
+
+            <!-- BIG POPPING NAVIGATION CALL-TO-ACTION BUTTONS -->
+            <div class="pt-2 space-y-3">
+              <p class="text-xs font-bold text-slate-700 uppercase tracking-wider text-center sm:text-left">Next Steps Tailored To Your Body:</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button type="button" onclick="navigateToPage(2)" class="btn-pop-emerald p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer">
+                  <span class="text-xl">🥗</span>
+                  <span>View Food & Nutrition Suggestions &rarr;</span>
+                </button>
+
+                <button type="button" onclick="navigateToPage(3)" class="btn-pop-blue p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer">
+                  <span class="text-xl">🏋️</span>
+                  <span>View Advanced Gym & Supplement Plan &rarr;</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- PAGE 2: FOOD & NUTRITION RECOMMENDATIONS   -->
+      <!-- ========================================== -->
+      <section id="page2View" class="hidden space-y-6">
+        
+        <!-- Header & Back Button -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-200/90 gap-3">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">Step 2 of 3</span>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1 flex items-center gap-2">
+              <span>Tailored Nutrition & Superfood Market</span>
+            </h2>
+            <p id="page2Subtitle" class="text-xs sm:text-sm text-slate-500">Personalized dietary fuel matched to your current BMI index</p>
+          </div>
+
+          <button type="button" onclick="navigateToPage(1)" class="px-4 py-2 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer flex items-center gap-1.5">
+            <span>&larr;</span> Back to Calculator
+          </button>
+        </div>
+
+        <!-- Dynamic Diet Strategy Banner -->
+        <div class="p-5 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border border-emerald-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span id="dietStrategyBadge" class="px-3 py-0.5 rounded-full text-xs font-black bg-emerald-600 text-white uppercase tracking-wider">Metabolic Maintenance</span>
+              <span id="userBmiBadgeDiet" class="text-xs font-bold text-slate-700 bg-white/80 px-2.5 py-0.5 rounded-full border border-slate-200">BMI: 22.9</span>
+            </div>
+            <h3 id="dietHeadline" class="text-lg sm:text-xl font-black text-slate-900">Whole Food Vitality & Clean Protein Balance</h3>
+            <p id="dietDetailedDesc" class="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+              Maintain lean mass and support metabolic health with anti-inflammatory omega fats, slow-digesting complex carbohydrates, and high micronutrient density.
+            </p>
+          </div>
+
+          <!-- Quick affiliate promo reminder -->
+          <div class="bg-white/90 p-3 rounded-xl border border-emerald-300/80 shrink-0 text-center shadow-xs">
+            <span class="text-[10px] font-extrabold uppercase tracking-wide text-slate-500 block">Store Partner Discount</span>
+            <span class="text-xs font-black text-emerald-700 block">15% OFF Groceries</span>
+            <span class="font-mono text-[11px] font-black bg-amber-100 text-slate-900 px-2 py-0.5 rounded inline-block mt-1">FITBUY15</span>
+          </div>
+        </div>
+
+        <!-- Interactive Food Cards Grid (Click to open Buy Box Modal) -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h4 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Click Any Superfood to Order Online:</h4>
+              <p class="text-xs text-slate-500">Tap cards to inspect nutritional profile and open express delivery partners</p>
+            </div>
+            <span class="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 hidden sm:inline-flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Same-Day / 10-Min Delivery Active
+            </span>
+          </div>
+
+          <div id="foodCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5">
+            <!-- Dynamic Food Cards injected via JS -->
+          </div>
+        </div>
+
+        <!-- Sample Day Meal Routine -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <h4 class="text-xs sm:text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+              <span>📅</span> Target Daily Meal Schedule
+            </h4>
+            <span id="targetCalorieGoal" class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">Balanced TDEE</span>
+          </div>
+          <div id="dailyMealBreakdown" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Bottom Step Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+          <button type="button" onclick="navigateToPage(1)" class="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition cursor-pointer">
+            &larr; Back to BMI Calculator
+          </button>
+          <button type="button" onclick="navigateToPage(3)" class="btn-pop-blue w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer">
+            <span>Next: Gym Workouts & Supplements &rarr;</span>
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- PAGE 3: ADVANCED GYM EXERCISES & SUPPL.   -->
+      <!-- ========================================== -->
+      <section id="page3View" class="hidden space-y-7">
+        
+        <!-- Header & Nav Buttons -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-200/90 gap-3">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200">Step 3 of 3</span>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1 flex items-center gap-2">
+              <span>Gym Conditioning & Supplement Protocol</span>
+            </h2>
+            <p id="page3Subtitle" class="text-xs sm:text-sm text-slate-500">Biomechanical exercises and performance supplements matched to your BMI</p>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button type="button" onclick="navigateToPage(2)" class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer">
+              &larr; Food Plan
+            </button>
+            <button type="button" onclick="navigateToPage(1)" class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer">
+              Calculator
+            </button>
+          </div>
+        </div>
+
+        <!-- Exercise Routine Strategy Banner -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span id="gymProtocolBadge" class="bg-amber-400 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">Compound Hypertrophy</span>
+              <span id="userBmiBadgeGym" class="text-xs font-bold text-slate-300 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700">BMI: 22.9</span>
+            </div>
+            <h3 id="gymGoalTitle" class="text-lg sm:text-xl font-black text-white">Athletic Conditioning & Hypertrophy Program</h3>
+            <p id="gymGoalDesc" class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              Focus on full range of motion compound movements to build dense muscle fibers, elevate baseline metabolism, and improve cardiovascular stamina.
+            </p>
+          </div>
+
+          <div class="bg-white/10 p-3 rounded-xl border border-white/20 text-center shrink-0">
+            <span class="text-[10px] font-extrabold text-amber-300 uppercase tracking-wider block">Recommended Frequency</span>
+            <span id="trainingFrequency" class="text-sm font-black text-white">4 - 5 Days / Week</span>
+          </div>
+        </div>
+
+        <!-- GYM EXERCISES WITH VISUAL DIAGRAMS & REPS -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+              <span>🏋️</span> Targeted Exercises (Visuals, Sets & Reps)
+            </h4>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200">
+              Form Over Weight
+            </span>
+          </div>
+
+          <div id="exerciseCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Dynamically populated with SVG illustrations & set/rep specs -->
+          </div>
+        </div>
+
+        <!-- PROTEINS, CREATINE & PERFORMANCE SUPPLEMENTS AFFILIATE ENGINE -->
+        <div class="bg-slate-900 text-white p-5 sm:p-6 rounded-3xl shadow-xl space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-3 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="bg-yellow-400 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-md uppercase tracking-wider">Clinical Nutrition</span>
+                <span class="text-xs text-amber-300 font-extrabold">★ Certified Lab-Tested Partners</span>
+              </div>
+              <h3 id="supplementSectionTitle" class="text-lg sm:text-xl font-black text-white mt-1">Recommended Proteins, Creatine & Supplements</h3>
+              <p class="text-xs text-slate-400">Pure bioactive compounds scientifically verified to assist your current metabolic profile</p>
+            </div>
+
+            <span class="text-xs text-emerald-400 font-mono bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700">
+              Code: <strong>FITBUY15</strong> (15% OFF)
+            </span>
+          </div>
+
+          <!-- Supplement Affiliate Cards Grid -->
+          <div id="supplementCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-1">
+            <!-- Dynamically injected supplement affiliate cards -->
+          </div>
+
+          <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800 text-center">
+            ⚕️ Consult a medical professional or certified nutritionist before starting any intense supplement regimen. All links redirect to certified vendor stores (Amazon, MyProtein, GNC, iHerb).
+          </div>
+        </div>
+
+        <!-- Bottom Action Row -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+          <button type="button" onclick="navigateToPage(2)" class="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition cursor-pointer">
+            &larr; Back to Food Suggestions
+          </button>
+          
+          <button type="button" onclick="copyFullFitnessReport()" class="btn-pop px-6 py-3.5 rounded-2xl bg-gradient-to-r from-red-500 via-rose-600 to-amber-500 hover:from-red-600 hover:via-rose-700 hover:to-amber-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg">
+            <span>📋 Copy Full Workout & Diet Report</span>
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- AFFILIATE WHERE-TO-BUY MODAL               -->
+  <!-- ========================================== -->
+  <div id="affiliateModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-md hidden opacity-0 transition-opacity duration-200">
+    <div id="affiliateModalBox" class="bg-white rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-slate-200 relative transform scale-95 transition-transform duration-200 max-h-[92vh] overflow-y-auto">
+      
+      <!-- Close button -->
+      <button type="button" onclick="closeAffiliateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-base transition">
+        ✕
+      </button>
+
+      <!-- Badges -->
+      <div class="flex items-center gap-2 mb-2">
+        <span id="modalBadge" class="bg-amber-100 text-amber-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Certified Organic</span>
+        <span id="modalDietFit" class="bg-blue-100 text-blue-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">High Bioavailability</span>
+      </div>
+
+      <!-- Food / Item Header -->
+      <div class="flex items-center gap-4 my-3">
+        <div id="modalItemEmoji" class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-4xl shadow-inner shrink-0">
+          🍎
+        </div>
+        <div>
+          <h3 id="modalItemTitle" class="text-xl font-black text-slate-900 leading-tight">Fresh Produce</h3>
+          <p id="modalItemSubtitle" class="text-xs text-slate-500 mt-0.5">Farm Fresh & Grade-A Certified</p>
+          <div class="flex items-center gap-1.5 mt-1 text-xs text-amber-500 font-extrabold">
+            <span>★★★★★</span>
+            <span class="text-slate-500 font-normal text-[11px]">(4.9/5 from 4,100+ health shoppers)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Benefits Box -->
+      <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 mb-4 space-y-1">
+        <p class="font-extrabold text-emerald-800 flex items-center gap-1.5">
+          <span>🌿</span> Why your body needs this:
+        </p>
+        <p id="modalItemDesc" class="text-emerald-800/90 leading-relaxed">
+          High nutritional density tailored to support your calculated metabolic target.
+        </p>
+      </div>
+
+      <!-- Price Estimate & Coupon -->
+      <div class="bg-gradient-to-r from-yellow-50 to-amber-100 border-2 border-dashed border-amber-300 rounded-2xl p-3 flex items-center justify-between mb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800 block">Estimated Store Price</span>
+          <span id="modalItemPrice" class="text-sm font-black text-slate-900">$4.99 - $8.99 (or local equiv.)</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <code class="bg-white px-2 py-1 rounded-lg font-mono font-black text-slate-900 text-xs border border-amber-300">FITBUY15</code>
+          <button type="button" onclick="copyCouponCode('FITBUY15')" class="p-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition cursor-pointer" title="Copy Promo Code">
+            📋
+          </button>
+        </div>
+      </div>
+
+      <!-- Partner Store Direct Buy Links -->
+      <div class="space-y-2.5 mb-4">
+        <p class="text-xs font-bold text-slate-700 uppercase tracking-wider">Choose Store & Order Online:</p>
+        
+        <!-- Store 1: Amazon Fresh / Prime -->
+        <a id="linkAmazon" href="https://www.amazon.com?tag=healthyweight-20" target="_blank" rel="noopener noreferrer sponsored" class="flex items-center justify-between p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition group">
+          <div class="flex items-center gap-2.5">
+            <span class="text-lg">🛒</span>
+            <div class="text-left">
+              <span class="font-extrabold text-white block">Amazon Fresh / Prime</span>
+              <span class="text-[10px] text-slate-300 font-normal">2-Hour Delivery &bull; Free with Prime</span>
+            </div>
+          </div>
+          <span class="text-yellow-300 group-hover:translate-x-1 transition-transform">Check Price &rarr;</span>
+        </a>
+
+        <!-- Store 2: Instacart -->
+        <a id="linkInstacart" href="https://www.instacart.com" target="_blank" rel="noopener noreferrer sponsored" class="flex items-center justify-between p-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition group">
+          <div class="flex items-center gap-2.5">
+            <span class="text-lg">🥕</span>
+            <div class="text-left">
+              <span class="font-extrabold text-white block">Instacart (US & Global)</span>
+              <span class="text-[10px] text-emerald-100 font-normal">Delivered from local organic stores in 45m</span>
+            </div>
+          </div>
+          <span class="text-white group-hover:translate-x-1 transition-transform">Shop Local &rarr;</span>
+        </a>
+
+        <!-- Store 3: Blinkit / Quick Commerce -->
+        <a id="linkBlinkit" href="https://blinkit.com" target="_blank" rel="noopener noreferrer sponsored" class="flex items-center justify-between p-3 rounded-2xl bg-yellow-400 hover:bg-yellow-500 text-slate-950 text-xs font-bold transition group">
+          <div class="flex items-center gap-2.5">
+            <span class="text-lg">⚡</span>
+            <div class="text-left">
+              <span class="font-extrabold text-slate-950 block">Blinkit / 10-Min Quick Express</span>
+              <span class="text-[10px] text-slate-800 font-normal">Instant 10-15 minute grocery drop</span>
+            </div>
+          </div>
+          <span class="text-slate-950 group-hover:translate-x-1 transition-transform">Order Now &rarr;</span>
+        </a>
+
+        <!-- Store 4: Whole Foods / iHerb Global -->
+        <a id="linkSpecialty" href="https://www.wholefoodsmarket.com" target="_blank" rel="noopener noreferrer sponsored" class="flex items-center justify-between p-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold transition group">
+          <div class="flex items-center gap-2.5">
+            <span class="text-lg">🏪</span>
+            <div class="text-left">
+              <span class="font-extrabold text-slate-950 block">Whole Foods / iHerb Global</span>
+              <span class="text-[10px] text-slate-800 font-normal">100% Non-GMO Verified Stock</span>
+            </div>
+          </div>
+          <span class="text-slate-950 group-hover:translate-x-1 transition-transform">View Deal &rarr;</span>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-slate-100 text-[10px] text-slate-400 text-center">
+        ⚡ Orders completed securely on partner stores. Affiliate commissions may be earned without added cost to you.
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="customToast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300">
+    <div id="toastInner" class="flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl text-sm font-semibold border backdrop-blur-md">
+      <span id="toastIcon"></span>
+      <span id="toastMessage">Notification message</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-10 max-w-5xl mx-auto w-full text-center py-4 mt-4 text-xs text-white/80 font-medium">
+    FitMetrics Pro Hub &bull; Certified Affiliate Marketing Partner with Amazon, Instacart, Blinkit, MyProtein & iHerb &bull; All rights reserved.
+  </footer>
+
+  <!-- Application Script -->
+  <script>
+    // State management
+    let currentUnit = 'metric';
+    let currentPage = 1;
+    let userState = {
+      age: 26,
+      heightCm: 175,
+      weightKg: 70,
+      gender: 'male',
+      bmi: 22.9,
+      category: 'healthy', // 'underweight' | 'healthy' | 'overweight' | 'obese'
+      minWeightKg: 56.7,
+      maxWeightKg: 76.3,
+      seniorAdjusted: false
+    };
+
+    // DOM Elements
+    const metricBtn = document.getElementById('metricBtn');
+    const imperialBtn = document.getElementById('imperialBtn');
+    const heightMetricWrapper = document.getElementById('heightMetricWrapper');
+    const heightImperialWrapper = document.getElementById('heightImperialWrapper');
+    const weightUnitLabel = document.getElementById('weightUnitLabel');
+    const ageInput = document.getElementById('ageInput');
+    const ageHint = document.getElementById('ageHint');
+    const heightCmInput = document.getElementById('heightCmInput');
+    const heightFeetInput = document.getElementById('heightFeetInput');
+    const heightInchesInput = document.getElementById('heightInchesInput');
+    const currentWeightInput = document.getElementById('currentWeightInput');
+
+    // Page 1 Elements
+    const avatarStickerContainer = document.getElementById('avatarStickerContainer');
+    const currentStatusBadge = document.getElementById('currentStatusBadge');
+    const bmiScoreBadge = document.getElementById('bmiScoreBadge');
+    const resPrimaryWeight = document.getElementById('resPrimaryWeight');
+    const resSecondaryWeight = document.getElementById('resSecondaryWeight');
+    const targetBmiText = document.getElementById('targetBmiText');
+    const gaugeMarker = document.getElementById('gaugeMarker');
+    const markerLabel = document.getElementById('markerLabel');
+    const gaugeStatusText = document.getElementById('gaugeStatusText');
+    const comparisonBox = document.getElementById('comparisonBox');
+
+    // Navigation Tabs
+    const navBtnPage1 = document.getElementById('navBtnPage1');
+    const navBtnPage2 = document.getElementById('navBtnPage2');
+    const navBtnPage3 = document.getElementById('navBtnPage3');
+    const page1View = document.getElementById('page1View');
+    const page2View = document.getElementById('page2View');
+    const page3View = document.getElementById('page3View');
+
+    // Page 2 Elements
+    const dietStrategyBadge = document.getElementById('dietStrategyBadge');
+    const userBmiBadgeDiet = document.getElementById('userBmiBadgeDiet');
+    const dietHeadline = document.getElementById('dietHeadline');
+    const dietDetailedDesc = document.getElementById('dietDetailedDesc');
+    const foodCardsGrid = document.getElementById('foodCardsGrid');
+    const dailyMealBreakdown = document.getElementById('dailyMealBreakdown');
+    const targetCalorieGoal = document.getElementById('targetCalorieGoal');
+
+    // Page 3 Elements
+    const gymProtocolBadge = document.getElementById('gymProtocolBadge');
+    const userBmiBadgeGym = document.getElementById('userBmiBadgeGym');
+    const gymGoalTitle = document.getElementById('gymGoalTitle');
+    const gymGoalDesc = document.getElementById('gymGoalDesc');
+    const trainingFrequency = document.getElementById('trainingFrequency');
+    const exerciseCardsGrid = document.getElementById('exerciseCardsGrid');
+    const supplementCardsGrid = document.getElementById('supplementCardsGrid');
+    const supplementSectionTitle = document.getElementById('supplementSectionTitle');
+
+    // RICH DATABASE: FOOD & PRODUCE FOR AFFILIATE MODAL
+    const foodDatabase = {
+      avocado: {
+        id: 'avocado',
+        emoji: '🥑',
+        name: 'Organic Hass Avocados',
+        subtitle: 'Fresh Ripe Hass Avocados (Pack of 4)',
+        badge: 'Monounsaturated Fats',
+        dietFit: 'High Calorie Density & Potassium',
+        price: '$4.99 - $6.49',
+        desc: 'Loaded with oleic fatty acids, dietary fiber, and over 20 essential micronutrients to boost healthy caloric surplus or protect cardiovascular integrity.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+hass+avocados&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=avocados',
+          blinkit: 'https://blinkit.com/s/?q=avocado',
+          specialty: 'https://www.wholefoodsmarket.com/products/produce'
+        }
+      },
+      peanutbutter: {
+        id: 'peanutbutter',
+        emoji: '🥜',
+        name: 'All-Natural Peanut Butter',
+        subtitle: '100% Dry Roasted Peanuts (1 kg jar)',
+        badge: 'Mass Hypertrophy Fuel',
+        dietFit: 'Dense Protein & Healthy Oils',
+        price: '$7.49 - $9.99',
+        desc: 'Delivers 190 calories and 8g of plant-based protein in just 2 tablespoons. Free from hydrogenated oils and added sucrose.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=natural+peanut+butter+no+sugar&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=peanut+butter',
+          blinkit: 'https://blinkit.com/s/?q=peanut+butter',
+          specialty: 'https://www.iherb.com/search?kw=organic+peanut+butter'
+        }
+      },
+      oats: {
+        id: 'oats',
+        emoji: '🥣',
+        name: 'Whole Grain Rolled Oats',
+        subtitle: 'Old Fashioned Gluten-Free Rolled Oats (32oz)',
+        badge: 'Slow GI Complex Carb',
+        dietFit: 'Beta-Glucan Fiber',
+        price: '$4.29 - $5.99',
+        desc: 'Provides sustained glycogen replenishment without blood sugar spikes. Lowers LDL cholesterol and fuels endurance in the gym.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+rolled+oats&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=rolled+oats',
+          blinkit: 'https://blinkit.com/s/?q=rolled+oats',
+          specialty: 'https://www.iherb.com/search?kw=rolled+oats'
+        }
+      },
+      salmon: {
+        id: 'salmon',
+        emoji: '🐟',
+        name: 'Wild-Caught Salmon Fillets',
+        subtitle: 'Pacific Sockeye Salmon Portions (Pack of 4)',
+        badge: 'Pure Omega-3 & Protein',
+        dietFit: 'EPA/DHA & Joint Repair',
+        price: '$12.99 - $16.99',
+        desc: '23g of pure bio-available protein per fillet packed with anti-inflammatory omega-3 fatty acids for muscle protein synthesis and cardiovascular protection.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=wild+caught+salmon+fillets&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=salmon',
+          blinkit: 'https://blinkit.com/s/?q=salmon',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      },
+      sweetpotato: {
+        id: 'sweetpotato',
+        emoji: '🍠',
+        name: 'Organic Garnet Sweet Potatoes',
+        subtitle: 'Farm-Fresh Sweet Yams (3 lb bag)',
+        badge: 'Clean Glycogen',
+        dietFit: 'Beta-Carotene & Fiber',
+        price: '$3.49 - $4.99',
+        desc: 'Superior complex carbohydrate loaded with vitamin A, potassium, and slowly-digested starch to power tough training sessions.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+sweet+potatoes&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=sweet+potatoes',
+          blinkit: 'https://blinkit.com/s/?q=sweet+potato',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      },
+      apple: {
+        id: 'apple',
+        emoji: '🍎',
+        name: 'Crisp Honeycrisp Apples',
+        subtitle: 'Fresh Orchard Organic Apples (Pack of 6)',
+        badge: 'Pectin Satiety Fruit',
+        dietFit: 'Soluble Fiber & Hydration',
+        price: '$3.99 - $5.49',
+        desc: 'Pectin soluble fiber expands gently in the gut, stabilizing insulin response and halting snack cravings during caloric deficits.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+apples+fresh&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=apples',
+          blinkit: 'https://blinkit.com/s/?q=apples',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      },
+      broccoli: {
+        id: 'broccoli',
+        emoji: '🥦',
+        name: 'Fresh Organic Broccoli Crowns',
+        subtitle: 'Crisp Green Broccoli Florets (1 lb)',
+        badge: 'High-Volume Super Veggie',
+        dietFit: 'Sulforaphane & Indole-3',
+        price: '$2.99 - $3.99',
+        desc: 'Ultra-low calorie density that enables massive food volume while keeping calories low. Sulforaphane supports cellular detoxification.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=fresh+broccoli+organic&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=broccoli',
+          blinkit: 'https://blinkit.com/s/?q=broccoli',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      },
+      spinach: {
+        id: 'spinach',
+        emoji: '🥗',
+        name: 'Organic Baby Spinach Leaves',
+        subtitle: 'Triple-Washed Pre-Packaged Greens (16oz)',
+        badge: 'Micronutrient King',
+        dietFit: 'Nitrates, Iron & Magnesium',
+        price: '$3.29 - $4.49',
+        desc: 'Dietary nitrates in spinach improve endothelial efficiency and muscle contractile strength with almost zero caloric footprint.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+baby+spinach&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=spinach',
+          blinkit: 'https://blinkit.com/s/?q=spinach',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      },
+      chiaseeds: {
+        id: 'chiaseeds',
+        emoji: '🌱',
+        name: 'Organic Raw Chia Seeds',
+        subtitle: 'Triple-Cleaned Black Chia Seeds (16oz pouch)',
+        badge: 'Hydrophilic Fiber',
+        dietFit: 'ALA Omega-3 & Hydration',
+        price: '$5.99 - $7.99',
+        desc: 'Absorbs up to 10x its weight in water, promoting gastric fullness and slow release of nutrients throughout the day.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=organic+chia+seeds&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=chia+seeds',
+          blinkit: 'https://blinkit.com/s/?q=chia+seeds',
+          specialty: 'https://www.iherb.com/search?kw=chia+seeds'
+        }
+      },
+      greekyogurt: {
+        id: 'greekyogurt',
+        emoji: '🥣',
+        name: 'Plain Greek Yogurt (0% or Whole)',
+        subtitle: 'Authentic Strained Greek Yogurt (32oz tub)',
+        badge: 'Casein & Probiotics',
+        dietFit: '18g Protein Per Serving',
+        price: '$4.99 - $6.29',
+        desc: 'Slow-digesting casein protein feeds muscles overnight while active live cultures optimize digestive flora and nutrient uptake.',
+        stores: {
+          amazon: 'https://www.amazon.com/s?k=plain+greek+yogurt+organic&tag=healthyweight-20',
+          instacart: 'https://www.instacart.com/store/s?k=greek+yogurt',
+          blinkit: 'https://blinkit.com/s/?q=greek+yogurt',
+          specialty: 'https://www.wholefoodsmarket.com'
+        }
+      }
+    };
+
+    // VISUAL SVG GYM EXERCISE ASSETS & DATA
+    const exerciseDatabase = {
+      squat: {
+        title: "Barbell Back Squats",
+        target: "Quads, Glutes & Core",
+        difficulty: "Compound Anchor",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Lifter in deep squat with barbell -->
+            <line x1="30" y1="42" x2="130" y2="42" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="34" cy="42" r="9" fill="#dc2626"/>
+            <circle cx="126" cy="42" r="9" fill="#dc2626"/>
+            <!-- Head -->
+            <circle cx="80" cy="30" r="8" fill="#fcd34d"/>
+            <!-- Torso -->
+            <line x1="80" y1="38" x2="80" y2="68" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/>
+            <!-- Thighs / Hips -->
+            <line x1="80" y1="68" x2="56" y2="76" stroke="#1d4ed8" stroke-width="7" stroke-linecap="round"/>
+            <line x1="80" y1="68" x2="104" y2="76" stroke="#1d4ed8" stroke-width="7" stroke-linecap="round"/>
+            <!-- Calves / Feet -->
+            <line x1="56" y1="76" x2="54" y2="104" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+            <line x1="104" y1="76" x2="106" y2="104" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+            <line x1="45" y1="105" x2="60" y2="105" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+            <line x1="100" y1="105" x2="115" y2="105" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      bench: {
+        title: "Barbell Bench Press",
+        target: "Chest, Triceps & Front Delts",
+        difficulty: "Upper Body Mass",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Bench frame -->
+            <rect x="25" y="76" width="100" height="8" rx="2" fill="#334155"/>
+            <line x1="40" y1="84" x2="40" y2="108" stroke="#64748b" stroke-width="4"/>
+            <line x1="110" y1="84" x2="110" y2="108" stroke="#64748b" stroke-width="4"/>
+            <!-- Lifter lying -->
+            <ellipse cx="45" cy="71" rx="8" ry="7" fill="#fcd34d"/>
+            <line x1="53" y1="73" x2="105" y2="73" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
+            <!-- Arms pressing up -->
+            <line x1="75" y1="73" x2="65" y2="40" stroke="#fcd34d" stroke-width="5" stroke-linecap="round"/>
+            <line x1="85" y1="73" x2="95" y2="40" stroke="#fcd34d" stroke-width="5" stroke-linecap="round"/>
+            <!-- Barbell in air -->
+            <line x1="45" y1="36" x2="115" y2="36" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="50" cy="36" r="8" fill="#dc2626"/>
+            <circle cx="110" cy="36" r="8" fill="#dc2626"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      deadlift: {
+        title: "Romanian Deadlift (RDL)",
+        target: "Hamstrings, Glutes & Lower Back",
+        difficulty: "Posterior Chain",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Lifter hinged at hips -->
+            <circle cx="106" cy="36" r="8" fill="#fcd34d"/>
+            <line x1="100" y1="42" x2="72" y2="60" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/>
+            <!-- Legs hinged -->
+            <line x1="72" y1="60" x2="74" y2="104" stroke="#0f172a" stroke-width="7" stroke-linecap="round"/>
+            <!-- Arms hanging down holding bar -->
+            <line x1="90" y1="48" x2="88" y2="82" stroke="#fcd34d" stroke-width="5" stroke-linecap="round"/>
+            <line x1="68" y1="84" x2="112" y2="84" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="70" cy="84" r="8" fill="#dc2626"/>
+            <circle cx="110" cy="84" r="8" fill="#dc2626"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      inclinepress: {
+        title: "Incline Dumbbell Press",
+        target: "Upper Chest & Shoulders",
+        difficulty: "Toning & Aesthetics",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Incline bench at 35 deg -->
+            <line x1="40" y1="95" x2="95" y2="55" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+            <line x1="70" y1="75" x2="70" y2="108" stroke="#64748b" stroke-width="4"/>
+            <!-- Lifter torso on angle -->
+            <circle cx="95" cy="42" r="8" fill="#fcd34d"/>
+            <line x1="90" y1="50" x2="55" y2="80" stroke="#059669" stroke-width="8" stroke-linecap="round"/>
+            <!-- Dumbbells -->
+            <rect x="74" y="24" width="10" height="5" rx="1" fill="#ea580c"/>
+            <rect x="104" y="24" width="10" height="5" rx="1" fill="#ea580c"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      latpulldown: {
+        title: "Cable Lat Pulldowns",
+        target: "Lats, Rhomboids & Biceps",
+        difficulty: "V-Taper Builder",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Cable machine top -->
+            <line x1="80" y1="15" x2="80" y2="35" stroke="#64748b" stroke-width="2"/>
+            <line x1="40" y1="35" x2="120" y2="35" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+            <!-- Lifter seated -->
+            <circle cx="80" cy="55" r="7.5" fill="#fcd34d"/>
+            <line x1="80" y1="62" x2="80" y2="92" stroke="#059669" stroke-width="8" stroke-linecap="round"/>
+            <!-- Arms pulling bar down -->
+            <line x1="80" y1="65" x2="52" y2="40" stroke="#fcd34d" stroke-width="4.5"/>
+            <line x1="80" y1="65" x2="108" y2="40" stroke="#fcd34d" stroke-width="4.5"/>
+            <rect x="65" y="92" width="30" height="6" fill="#334155"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      goblet: {
+        title: "Kettlebell Goblet Squats",
+        target: "Quads & Core (Joint Safe)",
+        difficulty: "Metabolic Fat Burn",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Lifter holding kettlebell at chest -->
+            <circle cx="80" cy="30" r="8" fill="#fcd34d"/>
+            <line x1="80" y1="38" x2="80" y2="70" stroke="#ea580c" stroke-width="9" stroke-linecap="round"/>
+            <!-- Kettlebell in arms -->
+            <circle cx="80" cy="50" r="7" fill="#0f172a"/>
+            <path d="M76 43 Q80 39 84 43" stroke="#0f172a" stroke-width="2" fill="none"/>
+            <!-- Squat legs -->
+            <line x1="80" y1="70" x2="58" y2="82" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+            <line x1="80" y1="70" x2="102" y2="82" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="82" x2="56" y2="104" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+            <line x1="102" y1="82" x2="104" y2="104" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      inclinecardio: {
+        title: "Low-Impact Incline Treadmill",
+        target: "Cardiovascular & Fat Oxidation",
+        difficulty: "Zero Joint Impact",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Treadmill base tilted at 12 deg -->
+            <line x1="30" y1="104" x2="135" y2="82" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
+            <line x1="130" y1="82" x2="130" y2="48" stroke="#475569" stroke-width="4"/>
+            <!-- Walker -->
+            <circle cx="85" cy="42" r="7.5" fill="#fcd34d"/>
+            <line x1="85" y1="50" x2="82" y2="78" stroke="#ea580c" stroke-width="8" stroke-linecap="round"/>
+            <line x1="82" y1="78" x2="68" y2="96" stroke="#0f172a" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="82" y1="78" x2="98" y2="90" stroke="#0f172a" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      },
+      cablerow: {
+        title: "Seated Cable Rows",
+        target: "Mid-Back, Traps & Core",
+        difficulty: "Spine Friendly",
+        svg: `
+          <svg viewBox="0 0 160 120" class="w-full h-28 bg-slate-100 rounded-xl">
+            <!-- Cable machine pulley -->
+            <rect x="25" y="45" width="10" height="55" fill="#334155"/>
+            <!-- Lifter seated upright pulling cable -->
+            <circle cx="105" cy="52" r="7.5" fill="#fcd34d"/>
+            <line x1="105" y1="60" x2="105" y2="92" stroke="#ea580c" stroke-width="8" stroke-linecap="round"/>
+            <line x1="105" y1="92" x2="65" y2="92" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+            <!-- Arms pulling cable -->
+            <line x1="105" y1="68" x2="70" y2="68" stroke="#fcd34d" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="35" y1="68" x2="70" y2="68" stroke="#64748b" stroke-width="2"/>
+            <line x1="15" y1="108" x2="145" y2="108" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        `
+      }
+    };
+
+    // SUPPLEMENT AFFILIATE DATABASE (PROTEINS, CREATINE & BIO-COMPOUNDS)
+    const supplementDatabase = {
+      underweight: [
+        {
+          name: "Optimum Nutrition Serious Mass",
+          category: "Mass Gainer Protein",
+          price: "$54.99",
+          badge: "1,250 Calories / 50g Protein",
+          rating: "4.8 ★",
+          url: "https://www.amazon.com/s?k=serious+mass+gainer&tag=healthyweight-20",
+          store: "Amazon Prime",
+          icon: "🥛"
+        },
+        {
+          name: "Creapure Creatine Monohydrate",
+          category: "Pure Micronized (5g/day)",
+          price: "$29.99",
+          badge: "ATP & Intracellular Hydration",
+          rating: "4.9 ★",
+          url: "https://www.amazon.com/s?k=creatine+monohydrate+creapure&tag=healthyweight-20",
+          store: "Bodybuilding.com",
+          icon: "⚡"
+        },
+        {
+          name: "Full Spectrum Digestive Enzymes",
+          category: "Bio-Absorption Support",
+          price: "$19.95",
+          badge: "Eliminates Surplus Bloat",
+          rating: "4.7 ★",
+          url: "https://www.iherb.com/search?kw=digestive+enzymes",
+          store: "iHerb",
+          icon: "🌿"
+        },
+        {
+          name: "High-Potency Multi-Mineral Pack",
+          category: "Metabolic Catalyst",
+          price: "$22.49",
+          badge: "Zinc, D3 & B-Complex",
+          rating: "4.8 ★",
+          url: "https://www.amazon.com/s?k=mens+multivitamin+high+potency&tag=healthyweight-20",
+          store: "GNC Store",
+          icon: "💊"
+        }
+      ],
+      healthy: [
+        {
+          name: "100% Gold Standard Whey Isolate",
+          category: "Clean Bio-Protein",
+          price: "$44.99",
+          badge: "24g Pure Whey / 5.5g BCAAs",
+          rating: "4.9 ★",
+          url: "https://www.amazon.com/s?k=optimum+gold+standard+whey&tag=healthyweight-20",
+          store: "Amazon Prime",
+          icon: "💪"
+        },
+        {
+          name: "Micronized Creatine Powder",
+          category: "Muscle Power & Recovery",
+          price: "$27.99",
+          badge: "100 Servings (Unflavored)",
+          rating: "4.9 ★",
+          url: "https://www.amazon.com/s?k=creatine+monohydrate+powder&tag=healthyweight-20",
+          store: "MyProtein",
+          icon: "⚡"
+        },
+        {
+          name: "Triple Strength Omega-3 Fish Oil",
+          category: "Joint & Heart Recovery",
+          price: "$26.99",
+          badge: "1,400mg EPA / DHA Ultra Pure",
+          rating: "4.8 ★",
+          url: "https://www.amazon.com/s?k=triple+strength+omega+3&tag=healthyweight-20",
+          store: "iHerb",
+          icon: "🐟"
+        },
+        {
+          name: "Instant Electrolyte Hydration Packs",
+          category: "Intra-Workout Stamina",
+          price: "$21.99",
+          badge: "Zero Sugar / Optimal Sodium",
+          rating: "4.7 ★",
+          url: "https://www.amazon.com/s?k=electrolyte+hydration+powder&tag=healthyweight-20",
+          store: "Amazon Prime",
+          icon: "💧"
+        }
+      ],
+      overweight: [
+        {
+          name: "Hydrolyzed 100% Whey Isolate",
+          category: "Zero Carb / Ultra Low Calorie",
+          price: "$52.99",
+          badge: "25g Pure Protein / < 1g Fat",
+          rating: "4.8 ★",
+          url: "https://www.amazon.com/s?k=dymatize+iso+100&tag=healthyweight-20",
+          store: "Amazon Prime",
+          icon: "🥤"
+        },
+        {
+          name: "Pure Creatine Monohydrate",
+          category: "Muscle Preservation In Deficit",
+          price: "$26.99",
+          badge: "Maintains Lean Mass",
+          rating: "4.9 ★",
+          url: "https://www.amazon.com/s?k=creatine+monohydrate+powder&tag=healthyweight-20",
+          store: "MyProtein",
+          icon: "⚡"
+        },
+        {
+          name: "High-Potency Green Tea Extract (EGCG)",
+          category: "Thermogenic Metabolic Aid",
+          price: "$18.49",
+          badge: "400mg EGCG / Satiety Support",
+          rating: "4.7 ★",
+          url: "https://www.iherb.com/search?kw=egcg+green+tea+extract",
+          store: "iHerb",
+          icon: "🍵"
+        },
+        {
+          name: "L-Carnitine L-Tartrate 1500",
+          category: "Fatty Acid Transport",
+          price: "$21.99",
+          badge: "Cellular Energy Production",
+          rating: "4.6 ★",
+          url: "https://www.amazon.com/s?k=l+carnitine+l+tartrate&tag=healthyweight-20",
+          store: "GNC Store",
+          icon: "🔥"
+        }
+      ]
+    };
+
+    // TAB NAVIGATION CONTROLLER
+    function navigateToPage(pageIndex) {
+      currentPage = pageIndex;
+
+      // Update Nav Bar visual states
+      [navBtnPage1, navBtnPage2, navBtnPage3].forEach((btn, idx) => {
+        if (idx + 1 === pageIndex) {
+          btn.className = "nav-tab-active flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer";
+        } else {
+          btn.className = "flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center gap-2";
+        }
+      });
+
+      // Hide all pages, show target
+      page1View.classList.add('hidden');
+      page2View.classList.add('hidden');
+      page3View.classList.add('hidden');
+
+      if (pageIndex === 1) {
+        page1View.classList.remove('hidden');
+      } else if (pageIndex === 2) {
+        page2View.classList.remove('hidden');
+        renderNutritionPage();
+      } else if (pageIndex === 3) {
+        page3View.classList.remove('hidden');
+        renderGymPage();
+      }
+
+      window.scrollTo({ top: 180, behavior: 'smooth' });
+    }
+
+    // UNIT TOGGLING (Metric / Imperial)
+    function setUnitMode(mode) {
+      if (currentUnit === mode) return;
+
+      if (mode === 'imperial') {
+        metricBtn.className = "px-4 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all";
+        imperialBtn.className = "btn-unit-active px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all";
+        
+        heightMetricWrapper.classList.add('hidden');
+        heightImperialWrapper.classList.remove('hidden');
+        weightUnitLabel.innerText = 'lbs';
+
+        const cm = parseFloat(heightCmInput.value);
+        if (!isNaN(cm) && cm > 0) {
+          const totalIn = cm / 2.54;
+          heightFeetInput.value = Math.floor(totalIn / 12);
+          heightInchesInput.value = Math.round((totalIn % 12) * 10) / 10;
+        }
+
+        const kg = parseFloat(currentWeightInput.value);
+        if (!isNaN(kg) && kg > 0) {
+          currentWeightInput.value = (kg * 2.20462).toFixed(1);
+        }
+      } else {
+        imperialBtn.className = "px-4 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all";
+        metricBtn.className = "btn-unit-active px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all";
+
+        heightImperialWrapper.classList.add('hidden');
+        heightMetricWrapper.classList.remove('hidden');
+        weightUnitLabel.innerText = 'kg';
+
+        const ft = parseFloat(heightFeetInput.value) || 0;
+        const inc = parseFloat(heightInchesInput.value) || 0;
+        if (ft > 0 || inc > 0) {
+          heightCmInput.value = (((ft * 12) + inc) * 2.54).toFixed(1);
+        }
+
+        const lbs = parseFloat(currentWeightInput.value);
+        if (!isNaN(lbs) && lbs > 0) {
+          currentWeightInput.value = (lbs / 2.20462).toFixed(1);
+        }
+      }
+
+      currentUnit = mode;
+      calculateBMI(false);
+    }
+
+    // BMI CALCULATION ENGINE
+    function calculateBMI(showToastMsg = true) {
+      const age = parseInt(ageInput.value, 10);
+      let heightCm = 0;
+
+      if (isNaN(age) || age < 1 || age > 120) {
+        showToast("Please enter an age between 1 and 120.", "error");
+        return;
+      }
+
+      if (currentUnit === 'metric') {
+        heightCm = parseFloat(heightCmInput.value);
+        if (isNaN(heightCm) || heightCm < 40 || heightCm > 260) {
+          showToast("Please enter a valid height in centimeters.", "error");
+          return;
+        }
+      } else {
+        const ft = parseFloat(heightFeetInput.value) || 0;
+        const inc = parseFloat(heightInchesInput.value) || 0;
+        const totalIn = (ft * 12) + inc;
+        if (totalIn < 20 || totalIn > 105) {
+          showToast("Please enter a valid height in feet and inches.", "error");
+          return;
+        }
+        heightCm = totalIn * 2.54;
+      }
+
+      const rawWeight = parseFloat(currentWeightInput.value);
+      if (isNaN(rawWeight) || rawWeight < 10) {
+        showToast("Please provide your current weight.", "error");
+        return;
+      }
+
+      const currentKg = currentUnit === 'metric' ? rawWeight : rawWeight / 2.20462;
+      const heightM = heightCm / 100;
+      const bmi = currentKg / (heightM * heightM);
+
+      let minBmi = 18.5;
+      let maxBmi = 24.9;
+      let seniorAdjusted = false;
+
+      if (age >= 65) {
+        minBmi = 22.0;
+        maxBmi = 27.0;
+        seniorAdjusted = true;
+      }
+
+      const minWeightKg = minBmi * (heightM * heightM);
+      const maxWeightKg = maxBmi * (heightM * heightM);
+
+      let category = 'healthy';
+      if (bmi < 18.5) category = 'underweight';
+      else if (bmi >= 30.0) category = 'obese';
+      else if (bmi >= 25.0) category = 'overweight';
+
+      userState = {
+        age,
+        heightCm,
+        weightKg: currentKg,
+        bmi,
+        category,
+        minWeightKg,
+        maxWeightKg,
+        seniorAdjusted
+      };
+
+      updatePage1Results();
+
+      if (showToastMsg) {
+        showToast(`BMI calculated: ${bmi.toFixed(1)} (${category.toUpperCase()})`);
+      }
+    }
+
+    // UPDATE PAGE 1 UI
+    function updatePage1Results() {
+      const { minWeightKg, maxWeightKg, bmi, category, seniorAdjusted } = userState;
+      const minLbs = minWeightKg * 2.20462;
+      const maxLbs = maxWeightKg * 2.20462;
+
+      if (currentUnit === 'metric') {
+        resPrimaryWeight.innerText = `${minWeightKg.toFixed(1)} – ${maxWeightKg.toFixed(1)} kg`;
+        resSecondaryWeight.innerText = `(${minLbs.toFixed(1)} – ${maxLbs.toFixed(1)} lbs)`;
+      } else {
+        resPrimaryWeight.innerText = `${minLbs.toFixed(1)} – ${maxLbs.toFixed(1)} lbs`;
+        resSecondaryWeight.innerText = `(${minWeightKg.toFixed(1)} – ${maxWeightKg.toFixed(1)} kg)`;
+      }
+
+      bmiScoreBadge.innerText = `BMI: ${bmi.toFixed(1)}`;
+      targetBmiText.innerText = seniorAdjusted
+        ? `Target Senior BMI: 22.0 – 27.0 kg/m² (Clinically adjusted for 65+)`
+        : `Standard Clinical Target: 18.5 – 24.9 kg/m²`;
+
+      // Update Live Avatar Sticker
+      avatarStickerContainer.innerHTML = getLiveMascotSVG(category);
+
+      // Update Badges & Gauge
+      if (category === 'underweight') {
+        avatarStickerContainer.className = 'sticker-bounce shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center shadow-md p-2 border-2 bg-sky-50 border-sky-300';
+        currentStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-sky-100 text-sky-800 border border-sky-300';
+        currentStatusBadge.innerText = '⚡ Slender / Underweight';
+        gaugeStatusText.innerText = 'Underweight Zone (<18.5)';
+        comparisonBox.className = 'p-3.5 rounded-xl border bg-sky-50 border-sky-200 text-sky-900 text-xs sm:text-sm';
+        comparisonBox.innerHTML = `<strong>Dietician Assessment:</strong> You are currently below the standard clinical baseline. Caloric-dense superfoods (avocados, peanut butter) and compound hypertrophy will assist in building healthy lean tissue.`;
+      } else if (category === 'healthy') {
+        avatarStickerContainer.className = 'sticker-bounce shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center shadow-md p-2 border-2 bg-emerald-50 border-emerald-300';
+        currentStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-emerald-100 text-emerald-800 border border-emerald-300';
+        currentStatusBadge.innerText = '🌟 Optimal Healthy Range';
+        gaugeStatusText.innerText = 'Healthy Target Zone (18.5-24.9)';
+        comparisonBox.className = 'p-3.5 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900 text-xs sm:text-sm';
+        comparisonBox.innerHTML = `<strong>Dietician Assessment:</strong> Fantastic! You are in the optimal clinical target. Focus on micronutrient maintenance and progressive athletic conditioning.`;
+      } else {
+        avatarStickerContainer.className = 'sticker-bounce shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center shadow-md p-2 border-2 bg-amber-50 border-amber-300';
+        if (category === 'obese') {
+          currentStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-rose-100 text-rose-800 border border-rose-300';
+          currentStatusBadge.innerText = '🔥 Elevated BMI / Obesity Range';
+          gaugeStatusText.innerText = 'Obesity Zone (≥30)';
+          comparisonBox.className = 'p-3.5 rounded-xl border bg-rose-50 border-rose-200 text-rose-900 text-xs sm:text-sm';
+          comparisonBox.innerHTML = `<strong>Dietician Assessment:</strong> Your current index is above the target range. Joint-friendly metabolic circuits and high-satiety volume eating will initiate safe, sustained fat oxidation.`;
+        } else {
+          currentStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-amber-100 text-amber-800 border border-amber-300';
+          currentStatusBadge.innerText = '💪 Elevated Body Mass / Overweight';
+          gaugeStatusText.innerText = 'Overweight Zone (25-29.9)';
+          comparisonBox.className = 'p-3.5 rounded-xl border bg-amber-50 border-amber-200 text-amber-900 text-xs sm:text-sm';
+          comparisonBox.innerHTML = `<strong>Dietician Assessment:</strong> You are slightly above the target range. Minor caloric moderation and progressive volume training will smoothly steer you back toward your ideal range.`;
+        }
+      }
+
+      // Position Gauge Marker
+      const minScale = 14;
+      const maxScale = 36;
+      let percent = ((bmi - minScale) / (maxScale - minScale)) * 100;
+      percent = Math.max(3, Math.min(97, percent));
+      gaugeMarker.style.left = `${percent}%`;
+      markerLabel.innerText = `${bmi.toFixed(1)} BMI`;
+    }
+
+    // LIVE MASCOT SVG ENGINE
+    function getLiveMascotSVG(category) {
+      if (category === 'underweight') {
+        return `
+          <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow">
+            <circle cx="50" cy="50" r="46" fill="#e0f2fe" stroke="#38bdf8" stroke-width="3"/>
+            <circle cx="50" cy="28" r="14" fill="#fed7aa"/>
+            <circle cx="45" cy="26" r="2" fill="#1e293b"/>
+            <circle cx="55" cy="26" r="2" fill="#1e293b"/>
+            <path d="M46 32 Q50 36 54 32" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M43 42 L57 42 L54 68 L46 68 Z" fill="#0284c7"/>
+            <path d="M43 46 L30 40 L28 32" stroke="#fed7aa" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <path d="M57 46 L70 40 L72 32" stroke="#fed7aa" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <path d="M47 68 L44 90" stroke="#0369a1" stroke-width="5" stroke-linecap="round"/>
+            <path d="M53 68 L56 90" stroke="#0369a1" stroke-width="5" stroke-linecap="round"/>
+            <ellipse cx="42" cy="91" rx="4" ry="2.5" fill="#f43f5e"/>
+            <ellipse cx="58" cy="91" rx="4" ry="2.5" fill="#f43f5e"/>
+            <polygon points="22,28 24,24 26,28 30,29 26,31 24,35 22,31 18,29" fill="#facc15"/>
+          </svg>
+        `;
+      } else if (category === 'healthy') {
+        return `
+          <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow">
+            <circle cx="50" cy="50" r="46" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
+            <circle cx="50" cy="27" r="15" fill="#fcd34d"/>
+            <rect x="36" y="20" width="28" height="5" rx="2.5" fill="#ef4444"/>
+            <circle cx="45" cy="27" r="2.2" fill="#064e3b"/>
+            <circle cx="55" cy="27" r="2.2" fill="#064e3b"/>
+            <path d="M44 33 Q50 39 56 33" stroke="#064e3b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M38 42 L62 42 L58 70 L42 70 Z" fill="#059669"/>
+            <path d="M38 46 L25 54 L24 46" stroke="#fcd34d" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M62 46 L76 44 L80 36" stroke="#fcd34d" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <circle cx="81" cy="34" r="3.5" fill="#fcd34d"/>
+            <path d="M44 70 L42 90" stroke="#047857" stroke-width="6" stroke-linecap="round"/>
+            <path d="M56 70 L58 90" stroke="#047857" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="40" cy="91" rx="5" ry="3" fill="#2563eb"/>
+            <ellipse cx="60" cy="91" rx="5" ry="3" fill="#2563eb"/>
+          </svg>
+        `;
+      } else {
+        return `
+          <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow">
+            <circle cx="50" cy="50" r="46" fill="#fffbeb" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="50" cy="27" r="16" fill="#fed7aa"/>
+            <rect x="34" y="19" width="32" height="6" rx="3" fill="#3b82f6"/>
+            <ellipse cx="40" cy="30" rx="3" ry="1.5" fill="#fca5a5"/>
+            <ellipse cx="60" cy="30" rx="3" ry="1.5" fill="#fca5a5"/>
+            <circle cx="44" cy="26" r="2.2" fill="#1e293b"/>
+            <circle cx="56" cy="26" r="2.2" fill="#1e293b"/>
+            <path d="M45 32 Q50 37 55 32" stroke="#1e293b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="50" cy="58" rx="22" ry="19" fill="#ea580c"/>
+            <path d="M30 58 Q50 64 70 58" stroke="#ffffff" stroke-width="3" fill="none"/>
+            <path d="M31 52 L19 46 L18 38" stroke="#fed7aa" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M69 52 L81 48 L84 40" stroke="#fed7aa" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            <path d="M43 76 L41 91" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+            <path d="M57 76 L59 91" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="38" cy="92" rx="6" ry="3" fill="#ef4444"/>
+            <ellipse cx="62" cy="92" rx="6" ry="3" fill="#ef4444"/>
+            <path d="M69 22 C69 20 72 17 72 17 C72 17 75 20 75 22 C75 23.6 73.6 25 72 25 C70.4 25 69 23.6 69 22 Z" fill="#38bdf8"/>
+          </svg>
+        `;
+      }
+    }
+
+    // RENDER PAGE 2: FOOD & NUTRITION
+    function renderNutritionPage() {
+      const { category, bmi } = userState;
+      userBmiBadgeDiet.innerText = `BMI: ${bmi.toFixed(1)}`;
+
+      let foodKeys = [];
+
+      if (category === 'underweight') {
+        dietStrategyBadge.innerText = "+350-500 kcal Clean Mass Surplus";
+        dietStrategyBadge.className = "px-3 py-0.5 rounded-full text-xs font-black bg-sky-600 text-white uppercase tracking-wider";
+        dietHeadline.innerText = "Nutrient-Dense Hypertrophy & Fuel Protocol";
+        dietDetailedDesc.innerText = "Focus on healthy monounsaturated fats, complex slow carbs, and high-protein recovery. Avoid skipping meals and drink liquid nutrient smoothies between heavy compound lifting sessions.";
+        targetCalorieGoal.innerText = "+400 kcal Surplus Target";
+
+        foodKeys = ['avocado', 'peanutbutter', 'oats', 'salmon', 'sweetpotato', 'greekyogurt', 'chiaseeds', 'apple'];
+
+        dailyMealBreakdown.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-sky-700 block text-xs uppercase mb-1">🍳 Power Breakfast</span>
+            <p class="text-xs text-slate-700">1.5 cups rolled oats with whole milk, 2 tbsp natural peanut butter, 1 scoop protein, and a sliced banana.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-sky-700 block text-xs uppercase mb-1">🥗 High-Fuel Lunch</span>
+            <p class="text-xs text-slate-700">Pan-seared wild salmon fillet (200g) served with 1 whole avocado, brown rice, and roasted sweet potatoes.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-sky-700 block text-xs uppercase mb-1">🍲 Evening Mass Dinner</span>
+            <p class="text-xs text-slate-700">Chicken breast or tofu stir-fry with quinoa, olive oil, chia seeds, and 1 cup Greek yogurt before bed.</p>
+          </div>
+        `;
+      } else if (category === 'healthy') {
+        dietStrategyBadge.innerText = "Metabolic Equilibrium (Maintenance)";
+        dietStrategyBadge.className = "px-3 py-0.5 rounded-full text-xs font-black bg-emerald-600 text-white uppercase tracking-wider";
+        dietHeadline.innerText = "Cellular Vitality & Athletic Macro Balance";
+        dietDetailedDesc.innerText = "Maintain your clinical benchmark by consuming 1.6 - 2.0g of protein per kg of body weight, varied multi-colored vegetables, and omega-3 fatty acids for optimum cognitive and physical performance.";
+        targetCalorieGoal.innerText = "Isocaloric Equilibrium";
+
+        foodKeys = ['broccoli', 'salmon', 'apple', 'spinach', 'greekyogurt', 'oats', 'chiaseeds', 'avocado'];
+
+        dailyMealBreakdown.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-emerald-700 block text-xs uppercase mb-1">🍳 Balanced Breakfast</span>
+            <p class="text-xs text-slate-700">3 whole eggs scrambled with baby spinach, whole-grain sourdough toast, and 1 crisp organic apple.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-emerald-700 block text-xs uppercase mb-1">🥗 Athletic Lunch</span>
+            <p class="text-xs text-slate-700">Grilled chicken breast salad with diced Persian cucumbers, broccoli florets, and light vinaigrette.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-emerald-700 block text-xs uppercase mb-1">🍲 Recovery Dinner</span>
+            <p class="text-xs text-slate-700">Steamed wild salmon, sweet potato mash, steamed asparagus, and a bowl of fresh blueberries.</p>
+          </div>
+        `;
+      } else {
+        dietStrategyBadge.innerText = "-400-500 kcal High-Satiety Deficit";
+        dietStrategyBadge.className = "px-3 py-0.5 rounded-full text-xs font-black bg-amber-600 text-white uppercase tracking-wider";
+        dietHeadline.innerText = "High-Volume, High-Fiber Fat Loss Protocol";
+        dietDetailedDesc.innerText = "Harness volume eating: fill half your plate with low-calorie vegetables (broccoli, spinach) and prioritize lean proteins to preserve muscle while triggering steady adipose reduction.";
+        targetCalorieGoal.innerText = "-450 kcal Deficit Target";
+
+        foodKeys = ['broccoli', 'spinach', 'apple', 'greekyogurt', 'chiaseeds', 'oats', 'salmon', 'avocado'];
+
+        dailyMealBreakdown.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-amber-700 block text-xs uppercase mb-1">🍳 Satiety Breakfast</span>
+            <p class="text-xs text-slate-700">Egg white omelette with baby spinach, tomatoes, and 1 glass of antioxidant-packed green tea.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-amber-700 block text-xs uppercase mb-1">🥗 High-Volume Lunch</span>
+            <p class="text-xs text-slate-700">Massive chopped salad: 2 cups steamed broccoli, cucumbers, grilled chicken breast, and lemon tahini.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="font-extrabold text-amber-700 block text-xs uppercase mb-1">🍲 Lean Dinner</span>
+            <p class="text-xs text-slate-700">Baked white fish or lean tofu with garlic greens, followed by 1 crisp Honeycrisp apple for sweet cravings.</p>
+          </div>
+        `;
+      }
+
+      // Render Food Cards
+      foodCardsGrid.innerHTML = foodKeys.map(k => {
+        const item = foodDatabase[k];
+        return `
+          <button type="button" onclick="openAffiliateModal('${k}')" 
+                  class="bg-white p-3.5 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:shadow-md transition-all text-center flex flex-col items-center justify-between group cursor-pointer">
+            <span class="text-3xl mb-1 group-hover:scale-125 transition-transform duration-200">${item.emoji}</span>
+            <div>
+              <h5 class="text-xs font-black text-slate-900 leading-tight">${item.name}</h5>
+              <span class="text-[10px] text-blue-600 font-semibold block mt-0.5">${item.badge}</span>
+            </div>
+            <span class="mt-2.5 text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white transition">
+              Where to Buy &rarr;
+            </span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // RENDER PAGE 3: ADVANCED GYM EXERCISES & SUPPLEMENTS
+    function renderGymPage() {
+      const { category, bmi } = userState;
+      userBmiBadgeGym.innerText = `BMI: ${bmi.toFixed(1)}`;
+
+      let exercises = [];
+      let suppKey = 'healthy';
+
+      if (category === 'underweight') {
+        gymProtocolBadge.innerText = "Heavy Compound Hypertrophy";
+        gymGoalTitle.innerText = "Progressive Overload & Muscular Density Plan";
+        gymGoalDesc.innerText = "Prioritize multi-joint barbell and dumbbell movements. Keep cardio minimal and rest 2-3 minutes between working sets to recruit maximum high-threshold motor units.";
+        trainingFrequency.innerText = "3 - 4 Days / Week (Heavy Full Body)";
+        suppKey = 'underweight';
+
+        exercises = [
+          {
+            key: 'squat',
+            sets: '4 Sets',
+            reps: '6 - 8 Reps',
+            rest: '2.5 Mins Rest',
+            cue: 'Drive feet into ground, maintain neutral thoracic spine, hit parallel depth.'
+          },
+          {
+            key: 'bench',
+            sets: '4 Sets',
+            reps: '6 - 10 Reps',
+            rest: '2 Mins Rest',
+            cue: 'Retract scapula into bench, keep elbows tucked at 45 degrees, touch lower sternum.'
+          },
+          {
+            key: 'deadlift',
+            sets: '3 Sets',
+            reps: '8 - 10 Reps',
+            rest: '2 Mins Rest',
+            cue: 'Push hips backward into hinge position, feel deep stretch in hamstrings, lock glutes.'
+          }
+        ];
+      } else if (category === 'healthy') {
+        gymProtocolBadge.innerText = "Athletic Conditioning & Hypertrophy";
+        gymGoalTitle.innerText = "V-Taper Aesthetics & Functional Strength";
+        gymGoalDesc.innerText = "Mix primary compound lifts with unilateral stability exercises. Maintain tempo control (3 seconds eccentric) to maximize time under tension and muscle definition.";
+        trainingFrequency.innerText = "4 - 5 Days / Week (Upper / Lower)";
+        suppKey = 'healthy';
+
+        exercises = [
+          {
+            key: 'inclinepress',
+            sets: '4 Sets',
+            reps: '8 - 12 Reps',
+            rest: '90 Secs Rest',
+            cue: 'Angle bench to 30 degrees, press dumbbells in an arc, squeeze upper pecs at peak.'
+          },
+          {
+            key: 'latpulldown',
+            sets: '4 Sets',
+            reps: '10 - 12 Reps',
+            rest: '90 Secs Rest',
+            cue: 'Pull elbows downward toward back pockets, refrain from swinging torso.'
+          },
+          {
+            key: 'squat',
+            sets: '3 Sets',
+            reps: '8 - 10 Reps',
+            rest: '2 Mins Rest',
+            cue: 'High-bar placement, controlled descent, explode out of the hole.'
+          }
+        ];
+      } else {
+        gymProtocolBadge.innerText = "Metabolic Conditioning & Joint Care";
+        gymGoalTitle.innerText = "Low-Impact Fat Oxidation & Postural Strength";
+        gymGoalDesc.innerText = "Protect knees, spine, and ankles using dumbbell goblet squats, cable machines, and incline walking. Elevates heart rate and preserves active muscle during caloric deficit.";
+        trainingFrequency.innerText = "4 - 6 Days / Week (Circuits + LISS Cardio)";
+        suppKey = 'overweight';
+
+        exercises = [
+          {
+            key: 'goblet',
+            sets: '4 Sets',
+            reps: '12 - 15 Reps',
+            rest: '60 Secs Rest',
+            cue: 'Hold kettlebell flush to sternum, elbows between knees, zero spine shear stress.'
+          },
+          {
+            key: 'cablerow',
+            sets: '4 Sets',
+            reps: '12 - 15 Reps',
+            rest: '60 Secs Rest',
+            cue: 'Keep chest high, pull cable handle into navel, squeeze shoulder blades for 1 sec.'
+          },
+          {
+            key: 'inclinecardio',
+            sets: '1 Session',
+            reps: '25 - 35 Mins',
+            rest: 'Zone 2 Heart Rate',
+            cue: 'Treadmill at 10-12% incline, speed 3.0-3.5 mph. Burn pure fatty acids with zero knee impact.'
+          }
+        ];
+      }
+
+      // Render Exercise Cards with Visuals
+      exerciseCardsGrid.innerHTML = exercises.map(ex => {
+        const item = exerciseDatabase[ex.key];
+        return `
+          <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold mb-2">
+                <span class="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-100">${item.target}</span>
+                <span class="text-slate-400 font-semibold text-[11px]">${item.difficulty}</span>
+              </div>
+              <div class="overflow-hidden rounded-xl border border-slate-100">
+                ${item.svg}
+              </div>
+              <h5 class="text-sm font-extrabold text-slate-900 mt-2.5">${item.title}</h5>
+              
+              <!-- Set & Rep Badges -->
+              <div class="flex items-center gap-2 mt-2">
+                <span class="bg-slate-900 text-white font-black text-[11px] px-2 py-0.5 rounded-md">${ex.sets}</span>
+                <span class="bg-amber-100 text-amber-900 font-extrabold text-[11px] px-2 py-0.5 rounded-md">${ex.reps}</span>
+                <span class="bg-slate-100 text-slate-600 font-bold text-[11px] px-2 py-0.5 rounded-md">${ex.rest}</span>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-[11px] text-slate-600">
+              <strong class="text-slate-800">Coach Form Tip:</strong> ${ex.cue}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Render Supplement Recommendations
+      const suppList = supplementDatabase[suppKey];
+      supplementSectionTitle.innerText = category === 'underweight'
+        ? "Mass Gainers, Micronized Creatine & Absorption Enzymes"
+        : (category === 'healthy' ? "Pure Whey Isolate, Creatine & Recovery Omegas" : "Hydrolyzed Whey, Creatine & Thermogenic Extracts");
+
+      supplementCardsGrid.innerHTML = suppList.map(supp => `
+        <div class="bg-slate-800/95 rounded-2xl p-3.5 border border-slate-700 flex flex-col justify-between hover:border-amber-400 transition-all">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-[9px] font-extrabold px-1.5 py-0.5 bg-yellow-400/20 text-yellow-300 rounded">${supp.category}</span>
+              <span class="text-xl">${supp.icon}</span>
+            </div>
+            <h5 class="text-xs font-black text-white mt-1 leading-snug line-clamp-2">${supp.name}</h5>
+            <span class="text-[10px] text-emerald-400 font-bold block mt-1">${supp.badge}</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span class="text-sm font-black text-amber-300">${supp.price}</span>
+              <span class="text-[10px] text-slate-400 font-medium">${supp.rating}</span>
+            </div>
+          </div>
+          <a href="${supp.url}" target="_blank" rel="noopener noreferrer sponsored" class="mt-3 block text-center py-2 px-3 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 rounded-xl text-xs font-black transition">
+            Check Price on ${supp.store} &rarr;
+          </a>
+        </div>
+      `).join('');
+    }
+
+    // AFFILIATE BUY MODAL CONTROLLER
+    function openAffiliateModal(foodKey) {
+      const item = foodDatabase[foodKey];
+      if (!item) return;
+
+      const modal = document.getElementById('affiliateModal');
+      const box = document.getElementById('affiliateModalBox');
+
+      document.getElementById('modalItemEmoji').innerText = item.emoji;
+      document.getElementById('modalItemTitle').innerText = item.name;
+      document.getElementById('modalItemSubtitle').innerText = item.subtitle;
+      document.getElementById('modalBadge').innerText = item.badge;
+      document.getElementById('modalDietFit').innerText = item.dietFit;
+      document.getElementById('modalItemDesc').innerText = item.desc;
+      document.getElementById('modalItemPrice').innerText = item.price;
+
+      // Update Affiliate Store Links
+      document.getElementById('linkAmazon').href = item.stores.amazon;
+      document.getElementById('linkInstacart').href = item.stores.instacart;
+      document.getElementById('linkBlinkit').href = item.stores.blinkit;
+      document.getElementById('linkSpecialty').href = item.stores.specialty;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeAffiliateModal() {
+      const modal = document.getElementById('affiliateModal');
+      const box = document.getElementById('affiliateModalBox');
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+
+    // COPY COUPON CODE
+    function copyCouponCode(code) {
+      const temp = document.createElement('input');
+      temp.value = code;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showToast(`Promo Code ${code} copied! Apply at checkout for 15% OFF.`);
+      } catch (e) {
+        showToast('Code: ' + code);
+      }
+      document.body.removeChild(temp);
+    }
+
+    // COPY FULL REPORT
+    function copyFullFitnessReport() {
+      const { age, heightCm, bmi, category, minWeightKg, maxWeightKg } = userState;
+      const text = [
+        `================================================`,
+        `FITMETRICS PRO: HEALTH, DIET & GYM PLAN REPORT`,
+        `================================================`,
+        `Age: ${age} yrs | Height: ${heightCm.toFixed(1)} cm`,
+        `BMI Score: ${bmi.toFixed(1)} [${category.toUpperCase()}]`,
+        `Healthy Target Weight: ${minWeightKg.toFixed(1)} - ${maxWeightKg.toFixed(1)} kg`,
+        `Diet Strategy: ${dietHeadline.innerText}`,
+        `Gym Focus: ${gymGoalTitle.innerText} (${trainingFrequency.innerText})`,
+        `Verified Affiliate Partner Promo: FITBUY15 (15% OFF)`,
+        `Online Stores: Amazon Fresh, Instacart, Blinkit, MyProtein`,
+        `================================================`
+      ].join('\n');
+
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showToast('Full fitness, nutrition & gym report copied to clipboard!');
+      } catch (err) {
+        showToast('Report generated successfully.');
+      }
+      document.body.removeChild(temp);
+    }
+
+    // TOAST SYSTEM
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('customToast');
+      const inner = document.getElementById('toastInner');
+      const msg = document.getElementById('toastMessage');
+      const icon = document.getElementById('toastIcon');
+
+      msg.innerText = message;
+
+      if (type === 'error') {
+        inner.className = 'flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl text-sm font-semibold border backdrop-blur-md bg-red-600/90 text-white border-red-400';
+        icon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+      } else {
+        inner.className = 'flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl text-sm font-semibold border backdrop-blur-md bg-slate-900/90 text-white border-slate-700';
+        icon.innerHTML = `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+      }
+
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3500);
+    }
+
+    // INITIAL LOAD WITH PRELOADED DEMO VALUES
+    window.onload = function() {
+      ageInput.value = 26;
+      heightCmInput.value = 175;
+      currentWeightInput.value = 70;
+      calculateBMI(false);
+    };
+  </script>
+</body>
+</html>
