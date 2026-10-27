@@ -1,163 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NutriFit - Healthy Weight & Fitness Planner</title>
-  
-  <!-- Tailwind CSS CDN & Custom Fonts -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitPulse | Healthy Weight & Fitness Affiliate Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Custom Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="text-white py-8 px-4 flex flex-col items-center">
+<body class="min-h-screen text-slate-100 flex flex-col items-center justify-start p-4 sm:p-6 md:p-8 antialiased selection:bg-amber-400 selection:text-slate-900">
 
-  <!-- Main Application Container -->
-  <main class="w-full max-w-xl glass-card rounded-3xl p-6 sm:p-8">
-    
-    <!-- Top Header -->
-    <header class="text-center mb-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400/20 border border-yellow-400/40 rounded-full text-yellow-300 text-xs font-bold mb-2">
-        <span>⚡</span> CLINICAL FORMULA ENGINE
+  <!-- Background Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute top-1/3 -right-32 w-96 h-96 bg-red-600/25 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-32 left-1/4 w-96 h-96 bg-amber-500/25 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="w-full max-w-4xl flex items-center justify-between py-4 mb-6">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('calculator')">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-400 to-red-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+        <i class="fa-solid fa-heart-pulse text-white text-lg"></i>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">NutriFit BMI & Health</h1>
-      <p class="text-slate-300 text-sm mt-1">Calculate your target range and body composition</p>
-    </header>
-
-    <!-- Unit Toggle -->
-    <div class="flex bg-slate-900/60 p-1.5 rounded-2xl mb-6 border border-slate-700/50">
-      <button id="metric-btn" class="flex-1 py-2 rounded-xl text-sm font-bold bg-blue-600 text-white transition-all">Metric (cm / kg)</button>
-      <button id="imperial-btn" class="flex-1 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Imperial (ft, in / lbs)</button>
-    </div>
-
-    <!-- Input Form -->
-    <div class="space-y-4">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="age-input" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Age (Years)</label>
-          <input type="number" id="age-input" value="25" min="10" max="110" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
-        </div>
-        <div>
-          <label for="sex-input" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Biological Sex</label>
-          <select id="sex-input" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Metric Height -->
-      <div id="metric-height-container">
-        <label for="height-cm" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Height (cm)</label>
-        <input type="number" id="height-cm" value="175" min="80" max="250" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
-      </div>
-
-      <!-- Imperial Height -->
-      <div id="imperial-height-container" class="hidden grid-cols-2 gap-4">
-        <div>
-          <label for="height-ft" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Feet</label>
-          <input type="number" id="height-ft" value="5" min="2" max="8" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
-        </div>
-        <div>
-          <label for="height-in" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Inches</label>
-          <input type="number" id="height-in" value="9" min="0" max="11" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
-        </div>
-      </div>
-
-      <!-- Current Weight -->
       <div>
-        <label for="current-weight" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Current Weight (<span id="weight-unit-label">kg</span>)</label>
-        <input type="number" id="current-weight" value="70" min="20" max="300" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+        <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-amber-200 via-white to-blue-200 bg-clip-text text-transparent">FitPulse</h1>
+        <p class="text-xs text-slate-300 font-medium">Smart Weight & Wellness Engine</p>
       </div>
-
-      <!-- Calculate Trigger -->
-      <button id="calc-btn" class="btn-pop w-full py-4 bg-gradient-to-r from-red-600 via-rose-500 to-yellow-500 hover:brightness-110 text-white font-extrabold rounded-2xl text-lg tracking-wide uppercase mt-2">
-        Calculate BMI & Healthy Target
-      </button>
     </div>
+    <nav class="flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-white/10 backdrop-blur-md">
+      <button onclick="switchTab('calculator')" id="nav-calculator" class="nav-btn active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all">
+        <i class="fa-solid fa-calculator mr-1"></i> Calc
+      </button>
+      <button onclick="switchTab('nutrition')" id="nav-nutrition" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-all">
+        <i class="fa-solid fa-apple-whole mr-1"></i> Nutrition
+      </button>
+      <button onclick="switchTab('workout')" id="nav-workout" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-all">
+        <i class="fa-solid fa-dumbbell mr-1"></i> Gym Guide
+      </button>
+    </nav>
+  </header>
 
-    <!-- Output Section -->
-    <section id="results-card" class="mt-8 pt-6 border-t border-slate-700/60">
-      
-      <!-- Mascot Card -->
-      <div class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-700/50 mb-6">
-        <div id="mascot-emoji" class="text-4xl p-3 bg-slate-800 rounded-2xl border border-slate-700 shrink-0">🏃‍♂️</div>
-        <div>
-          <p class="text-xs uppercase tracking-wider font-bold text-slate-400" id="age-range-tag">Adult Reference Standard (18-64)</p>
-          <h2 class="text-xl font-bold flex items-center gap-2">
-            BMI: <span id="bmi-val" class="text-yellow-400 font-extrabold">22.9</span>
-            <span id="bmi-status" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Healthy</span>
-          </h2>
-          <p class="text-xs text-slate-300 mt-0.5">Healthy Weight Goal: <strong id="healthy-range-text" class="text-white">56.7 kg - 76.3 kg</strong></p>
-        </div>
-      </div>
-
-      <!-- Interactive BMI Bar -->
-      <div class="mb-4">
-        <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 px-0.5">
-          <span>BMI Spectrum</span>
-          <span id="marker-pos-label" class="text-yellow-300 font-mono">Current: 22.9</span>
-        </div>
-
-        <div class="relative w-full h-8 pt-2">
-          <div class="w-full h-4 rounded-full bg-gradient-to-r from-blue-500 via-emerald-400 via-yellow-400 to-red-500 shadow-inner"></div>
-          <div id="bmi-needle" class="absolute top-0 flex flex-col items-center">
-            <div class="w-3.5 h-3.5 bg-white border-2 border-slate-900 rounded-full shadow-lg"></div>
-            <div class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-white"></div>
-          </div>
-        </div>
-
-        <div class="flex justify-between text-[11px] font-bold text-slate-400 mt-1 px-1">
-          <span>Under (16)</span>
-          <span>18.5</span>
-          <span>25.0</span>
-          <span>30.0</span>
-          <span>Obese (40)</span>
-        </div>
-      </div>
-
-      <!-- Dietary Guidance Box -->
-      <div id="diet-box" class="bg-slate-900/70 border border-slate-700/60 rounded-2xl p-4 mt-6">
-        <h3 class="text-sm font-bold text-yellow-400 uppercase tracking-wide mb-1" id="diet-headline">Balanced Maintenance Protocol</h3>
-        <p class="text-xs text-slate-300 leading-relaxed mb-3" id="diet-summary">Maintain clean nutritional baseline with steady protein, healthy lipids, and micronutrient-rich complex carbs.</p>
-        
-        <div class="text-xs font-semibold text-slate-400 mb-2">Recommended Whole Foods (Click to view source):</div>
-        <div class="flex flex-wrap gap-2" id="food-badges">
-          <!-- Food tags injected via app.js -->
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <!-- Store/Buy Modal -->
-  <div id="buy-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
-      <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
-      <div id="modal-icon" class="text-5xl mb-3">🥑</div>
-      <h3 id="modal-title" class="text-xl font-extrabold text-white mb-1">Avocados</h3>
-      <p id="modal-desc" class="text-xs text-slate-300 mb-4">High monounsaturated healthy fats and potassium.</p>
-      
-      <div class="space-y-2 mb-4">
-        <a id="link-amazon" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-white transition-all">
-          <span>Amazon Fresh</span>
-          <span class="text-yellow-400">Order Online →</span>
-        </a>
-        <a id="link-instacart" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-white transition-all">
-          <span>Instacart / Local Grocery</span>
-          <span class="text-emerald-400">Deliver in 1 hr →</span>
-        </a>
-      </div>
-
-      <p class="text-[10px] text-slate-500">As an affiliate partner, we may earn commissions from qualifying purchases.</p>
+  <!-- Affiliate Top Banner -->
+  <div class="w-full max-w-4xl mb-6 bg-gradient-to-r from-amber-500/20 via-red-500/20 to-blue-600/20 border border-amber-400/30 rounded-2xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs backdrop-blur-md">
+    <div class="flex items-center gap-2">
+      <span class="bg-amber-400 text-slate-950 font-black px-2 py-0.5 rounded-md text-[10px] tracking-wider uppercase">Affiliate Partner</span>
+      <span class="text-slate-200">Order recommended diet essentials & supplements directly via verified retailers.</span>
+    </div>
+    <div class="flex items-center gap-2 font-mono bg-black/40 px-3 py-1 rounded-lg border border-white/10 text-amber-300">
+      <span>CODE: <strong>FITBUY15</strong></span>
+      <button onclick="copyCoupon()" title="Copy Code" class="hover:text-white transition"><i class="fa-regular fa-clone"></i></button>
     </div>
   </div>
 
-  <!-- Custom Logic Script -->
-  <script src="app.js"></script>
+  <!-- MAIN CONTAINER -->
+  <main class="w-full max-w-4xl">
+
+    <!-- PAGE 1: BMI CALCULATOR -->
+    <section id="page-calculator" class="page-section">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Input Form (Col 1-7) -->
+          <div class="md:col-span-7 space-y-5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                <span>Healthy Weight Calculator</span>
+              </h2>
+              <!-- Unit Selector -->
+              <div class="flex bg-slate-900/60 p-1 rounded-xl border border-white/10">
+                <button id="btn-metric" onclick="setUnit('metric')" class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 transition-all">Metric</button>
+                <button id="btn-imperial" onclick="setUnit('imperial')" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all">US / Imp</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Age -->
+              <div class="space-y-1">
+                <label class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1">
+                  Age <span class="text-amber-400">*</span>
+                </label>
+                <div class="relative">
+                  <input type="number" id="input-age" value="23" min="5" max="110" class="input-glass w-full rounded-xl px-4 py-3 font-bold text-white outline-none focus:ring-2 focus:ring-amber-400">
+                  <span class="absolute right-3 top-3.5 text-xs text-slate-400 font-medium">yrs</span>
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div class="space-y-1">
+                <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Sex</label>
+                <select id="input-gender" class="input-glass w-full rounded-xl px-4 py-3 font-bold text-white outline-none focus:ring-2 focus:ring-amber-400">
+                  <option value="male" class="bg-slate-900 text-white">Male</option>
+                  <option value="female" class="bg-slate-900 text-white">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Height Inputs -->
+            <div id="metric-height-container" class="space-y-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center justify-between">
+                <span>Height</span>
+                <span id="metric-height-val" class="text-amber-300 font-mono">175 cm</span>
+              </label>
+              <input type="range" id="input-height-cm" min="120" max="220" value="175" class="w-full accent-amber-400 cursor-pointer" oninput="updateHeightMetric(this.value)">
+            </div>
+
+            <div id="imperial-height-container" class="space-y-1 hidden">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Height (Feet & Inches)</label>
+              <div class="grid grid-cols-2 gap-3">
+                <input type="number" id="input-height-ft" value="5" min="3" max="7" class="input-glass rounded-xl px-4 py-3 font-bold text-white" placeholder="Feet">
+                <input type="number" id="input-height-in" value="9" min="0" max="11" class="input-glass rounded-xl px-4 py-3 font-bold text-white" placeholder="Inches">
+              </div>
+            </div>
+
+            <!-- Current Weight -->
+            <div class="space-y-1">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center justify-between">
+                <span>Current Weight</span>
+                <span id="weight-unit-label" class="text-amber-300 text-xs">kilograms</span>
+              </label>
+              <div class="relative">
+                <input type="number" id="input-weight" value="68" step="0.5" class="input-glass w-full rounded-xl px-4 py-3 font-bold text-white outline-none focus:ring-2 focus:ring-amber-400">
+                <span id="weight-unit-tag" class="absolute right-4 top-3.5 text-xs text-slate-400 font-bold">KG</span>
+              </div>
+            </div>
+
+            <!-- Popping Action Buttons -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <button onclick="calculateBMI()" class="pop-btn w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black py-3.5 px-6 rounded-2xl shadow-lg shadow-amber-500/30 flex items-center justify-center gap-2 text-base transition-transform active:scale-95">
+                <i class="fa-solid fa-bolt"></i> Calculate Weight Range
+              </button>
+            </div>
+          </div>
+
+          <!-- Mascot & Live Preview Panel (Col 8-12) -->
+          <div class="md:col-span-5 flex flex-col items-center justify-center text-center p-6 bg-slate-900/40 rounded-2xl border border-white/10 backdrop-blur-sm">
+            <div id="mascot-container" class="relative w-40 h-40 flex items-center justify-center mb-3">
+              <!-- Live SVG Body Mascot rendered dynamically -->
+            </div>
+            <div id="badge-bmi-status" class="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-2 bg-emerald-500/20 border border-emerald-400/40 text-emerald-300">
+              Optimal Condition
+            </div>
+            <h3 id="display-bmi-score" class="text-4xl font-black text-white tracking-tight mb-1">22.2 <span class="text-sm font-semibold text-slate-400">BMI</span></h3>
+            <p id="display-healthy-range" class="text-xs text-slate-300 mb-4 font-medium">Healthy target: <strong class="text-amber-300">56.7 kg - 76.3 kg</strong></p>
+
+            <div class="w-full space-y-2">
+              <button onclick="goToNutrition()" class="pop-btn w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20">
+                <i class="fa-solid fa-utensils"></i> Personalized Food Suggestions
+              </button>
+              <button onclick="goToWorkout()" class="pop-btn w-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md shadow-red-500/20">
+                <i class="fa-solid fa-dumbbell"></i> Advanced Gym & Supplements
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BMI Gauge Meter -->
+        <div class="mt-8 pt-6 border-t border-white/10">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-300 mb-2">
+            <span>Underweight (&lt;18.5)</span>
+            <span>Normal (18.5 - 24.9)</span>
+            <span>Overweight (25 - 29.9)</span>
+            <span>Obese (&ge;30)</span>
+          </div>
+          <div class="relative w-full h-3 rounded-full bg-gradient-to-r from-sky-400 via-emerald-400 via-amber-400 to-rose-600 shadow-inner overflow-visible">
+            <div id="bmi-marker" class="absolute -top-1.5 w-6 h-6 bg-white border-2 border-slate-900 rounded-full shadow-lg transform -translate-x-1/2 transition-all duration-500 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: FOOD SUGGESTIONS & AFFILIATE WHERE-TO-BUY -->
+    <section id="page-nutrition" class="page-section hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+        
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span id="nutrition-tag" class="px-2.5 py-0.5 rounded-md text-[11px] font-black uppercase tracking-wider bg-amber-400 text-slate-950">Targeted Protocol</span>
+              <span class="text-xs text-slate-300">Based on your BMI</span>
+            </div>
+            <h2 id="nutrition-title" class="text-2xl font-black text-white">Recommended Nutrition Plan</h2>
+            <p id="nutrition-desc" class="text-xs text-slate-300 max-w-xl mt-1">Calibrated foods to optimize your metabolism and help you reach your ideal weight range.</p>
+          </div>
+          <button onclick="switchTab('calculator')" class="pop-btn text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+            <i class="fa-solid fa-arrow-left"></i> Back to Calculator
+          </button>
+        </div>
+
+        <!-- Food Grid -->
+        <div id="food-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamic Food Items Loaded Here -->
+        </div>
+
+        <!-- Quick Affiliate Banner -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-amber-400/20 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-white">Get Fresh Groceries Delivered To Your Doorstep</h4>
+              <p class="text-xs text-slate-300">Click any food card above to view verified affiliate partners (Amazon Fresh, Instacart, Blinkit).</p>
+            </div>
+          </div>
+          <button onclick="goToWorkout()" class="pop-btn whitespace-nowrap bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 shadow-md">
+            Next: Gym & Supplement Plan <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 3: ADVANCED GYM EXERCISES & SUPPLEMENTS -->
+    <section id="page-workout" class="page-section hidden">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-8">
+        
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span id="workout-tag" class="px-2.5 py-0.5 rounded-md text-[11px] font-black uppercase tracking-wider bg-red-500 text-white">Strength & Cardio</span>
+              <span class="text-xs text-slate-300">Custom tailored plan</span>
+            </div>
+            <h2 id="workout-title" class="text-2xl font-black text-white">Prescribed Gym Routine</h2>
+            <p id="workout-desc" class="text-xs text-slate-300 max-w-xl mt-1">Targeted exercises with reps, sets, and illustrated postures for your body type.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="switchTab('nutrition')" class="pop-btn text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+              <i class="fa-solid fa-utensils"></i> Nutrition
+            </button>
+            <button onclick="switchTab('calculator')" class="pop-btn text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-left"></i> Calc
+            </button>
+          </div>
+        </div>
+
+        <!-- Exercises Grid -->
+        <div>
+          <h3 class="text-base font-extrabold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-fire text-amber-400"></i> Best Compound Exercises For Your BMI
+          </h3>
+          <div id="exercise-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Dynamic Exercises with Illustrated Visuals -->
+          </div>
+        </div>
+
+        <!-- Supplement Suggestions -->
+        <div class="pt-6 border-t border-white/10">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-base font-extrabold text-white flex items-center gap-2">
+                <i class="fa-solid fa-prescription-bottle-medical text-emerald-400"></i> Recommended Supplements & Protein
+              </h3>
+              <p class="text-xs text-slate-300">Clinically backed supplements to accelerate your goal safely.</p>
+            </div>
+            <span class="text-[10px] bg-white/10 px-2 py-1 rounded text-slate-300 font-mono">Affiliate Links</span>
+          </div>
+
+          <div id="supplement-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Dynamic Supplements -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AFFILIATE "WHERE TO BUY" MODAL -->
+  <div id="affiliate-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md hidden transition-opacity">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-7 relative border border-white/20 shadow-2xl animate-scaleUp">
+      <button onclick="closeAffiliateModal()" class="absolute right-4 top-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 mb-4">
+        <div id="modal-item-icon" class="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-3xl">
+          🍎
+        </div>
+        <div>
+          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded">Verified Healthy Choice</span>
+          <h3 id="modal-item-title" class="text-xl font-black text-white">Crisp Organic Apples</h3>
+          <p id="modal-item-subtitle" class="text-xs text-slate-300">Rich in soluble dietary pectin and polyphenols</p>
+        </div>
+      </div>
+
+      <!-- Item Highlights -->
+      <div class="bg-slate-900/50 rounded-2xl p-3.5 mb-5 border border-white/5 space-y-2 text-xs">
+        <div class="flex justify-between text-slate-300">
+          <span>Target Benefit:</span>
+          <span id="modal-item-benefit" class="font-bold text-emerald-400">Clean Caloric Surplus</span>
+        </div>
+        <div class="flex justify-between text-slate-300">
+          <span>Average Market Price:</span>
+          <span id="modal-item-price" class="font-bold text-amber-300">$2.99 / lb ($6.50/kg)</span>
+        </div>
+        <div class="flex justify-between text-slate-300">
+          <span>Partner Discount:</span>
+          <span class="font-bold text-amber-400">Save 15% with FITBUY15</span>
+        </div>
+      </div>
+
+      <!-- Retailer Buying Options -->
+      <div class="space-y-3">
+        <p class="text-xs font-bold text-slate-300 uppercase tracking-wider">Choose Retailer To Buy Directly:</p>
+        
+        <!-- Amazon -->
+        <a id="btn-amazon-link" href="https://www.amazon.com/s?k=organic+groceries&tag=fitpulse-20" target="_blank" rel="noopener noreferrer" class="pop-btn flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 hover:from-amber-500/20 hover:to-slate-800 border border-white/10 group transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center font-black">
+              <i class="fa-brands fa-amazon text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white group-hover:text-amber-300 flex items-center gap-1.5">
+                Amazon Fresh & Pantry
+                <span class="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">Prime</span>
+              </div>
+              <div class="text-[11px] text-slate-400">Same-day delivery & organic certified</div>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-amber-400 flex items-center gap-1">Buy <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></span>
+        </a>
+
+        <!-- Instacart -->
+        <a id="btn-instacart-link" href="https://www.instacart.com" target="_blank" rel="noopener noreferrer" class="pop-btn flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 hover:from-emerald-500/20 hover:to-slate-800 border border-white/10 group transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center font-black">
+              <i class="fa-solid fa-carrot text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white group-hover:text-emerald-300">Instacart / Local Supermarket</div>
+              <div class="text-[11px] text-slate-400">Delivered in under 2 hours</div>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-emerald-400 flex items-center gap-1">Buy <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></span>
+        </a>
+
+        <!-- Whole Foods / iHerb -->
+        <a id="btn-special-link" href="https://www.iherb.com" target="_blank" rel="noopener noreferrer" class="pop-btn flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 hover:from-blue-500/20 hover:to-slate-800 border border-white/10 group transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-blue-400/10 text-blue-400 flex items-center justify-center font-black">
+              <i class="fa-solid fa-leaf text-lg"></i>
+            </div>
+            <div>
+              <div id="modal-special-partner" class="text-xs font-bold text-white group-hover:text-blue-300">iHerb / Whole Foods Market</div>
+              <div class="text-[11px] text-slate-400">100% natural, lab-tested quality</div>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-blue-400 flex items-center gap-1">Buy <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></span>
+        </a>
+      </div>
+
+      <!-- FTC Affiliate Disclaimer -->
+      <p class="text-[10px] text-slate-400 text-center mt-5 leading-relaxed">
+        <strong>Disclosure:</strong> We earn an affiliate commission when you purchase through our links at no additional cost to you. We only recommend rigorously verified items.
+      </p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900/95 border border-amber-400/40 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 text-xs font-bold transition-all transform translate-y-20 opacity-0 z-50 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-amber-400"></i>
+    <span id="toast-msg">Coupon copied!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-4xl text-center py-8 text-xs text-slate-400 mt-auto border-t border-white/10">
+    <p class="mb-1">&copy; 2026 FitPulse Health Engine. All rights reserved.</p>
+    <p class="text-[10px] text-slate-400">Not intended as medical advice. Always consult your physician before starting an intensive workout or dietary routine.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

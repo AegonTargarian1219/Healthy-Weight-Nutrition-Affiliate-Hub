@@ -1,60 +1,88 @@
-/* Base Page Styling */
+/* FitPulse Stylesheet */
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: radial-gradient(circle at 10% 20%, #1e3a8a 0%, #dc2626 50%, #eab308 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #991b1b 70%, #854d0e 100%);
   background-attachment: fixed;
-  min-height: 100vh;
+  background-size: 200% 200%;
+  animation: gradientShift 18s ease infinite;
 }
 
-/* Frosted Glassmorphism Panel */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphic Container */
 .glass-card {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Popping Tactile Buttons */
-.btn-pop {
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
+.input-glass {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s ease;
 }
-
-.btn-pop:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.4);
-}
-
-.btn-pop:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-}
-
-/* Smooth Needle Movement */
-#bmi-needle {
-  left: 36.8%;
-  transform: translateX(-50%);
-  transition: left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Food Chip Badge Styling */
-.food-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
+.input-glass:focus {
   background: rgba(30, 41, 59, 0.9);
-  border: 1px solid rgba(100, 116, 139, 0.4);
-  padding: 0.35rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  border-color: #f59e0b;
 }
 
-.food-badge:hover {
-  border-color: #facc15;
-  background: rgba(51, 65, 85, 0.9);
-  transform: scale(1.05);
+/* Tactile 3D Popping Buttons */
+.pop-btn {
+  transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35), 0 10px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(0);
+}
+.pop-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.35), 0 14px 24px rgba(0, 0, 0, 0.3);
+}
+.pop-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Buttons */
+.nav-btn.active {
+  background: #f59e0b;
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Mascot SVG Animation */
+.mascot-bounce {
+  animation: floatMascot 3.5s ease-in-out infinite;
+}
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-scaleUp {
+  animation: scaleUp 0.25s ease-out forwards;
+}
+
+/* Exercise Posture Card */
+.exercise-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.exercise-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 158, 11, 0.4);
 }
