@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriFit - Healthy Weight & Fitness Planner</title>
+  
+  <!-- Tailwind CSS CDN & Custom Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white py-8 px-4 flex flex-col items-center">
+
+  <!-- Main Application Container -->
+  <main class="w-full max-w-xl glass-card rounded-3xl p-6 sm:p-8">
+    
+    <!-- Top Header -->
+    <header class="text-center mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400/20 border border-yellow-400/40 rounded-full text-yellow-300 text-xs font-bold mb-2">
+        <span>⚡</span> CLINICAL FORMULA ENGINE
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">NutriFit BMI & Health</h1>
+      <p class="text-slate-300 text-sm mt-1">Calculate your target range and body composition</p>
+    </header>
+
+    <!-- Unit Toggle -->
+    <div class="flex bg-slate-900/60 p-1.5 rounded-2xl mb-6 border border-slate-700/50">
+      <button id="metric-btn" class="flex-1 py-2 rounded-xl text-sm font-bold bg-blue-600 text-white transition-all">Metric (cm / kg)</button>
+      <button id="imperial-btn" class="flex-1 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Imperial (ft, in / lbs)</button>
+    </div>
+
+    <!-- Input Form -->
+    <div class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="age-input" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Age (Years)</label>
+          <input type="number" id="age-input" value="25" min="10" max="110" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+        </div>
+        <div>
+          <label for="sex-input" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Biological Sex</label>
+          <select id="sex-input" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Metric Height -->
+      <div id="metric-height-container">
+        <label for="height-cm" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Height (cm)</label>
+        <input type="number" id="height-cm" value="175" min="80" max="250" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+      </div>
+
+      <!-- Imperial Height -->
+      <div id="imperial-height-container" class="hidden grid-cols-2 gap-4">
+        <div>
+          <label for="height-ft" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Feet</label>
+          <input type="number" id="height-ft" value="5" min="2" max="8" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+        </div>
+        <div>
+          <label for="height-in" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Inches</label>
+          <input type="number" id="height-in" value="9" min="0" max="11" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+        </div>
+      </div>
+
+      <!-- Current Weight -->
+      <div>
+        <label for="current-weight" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Current Weight (<span id="weight-unit-label">kg</span>)</label>
+        <input type="number" id="current-weight" value="70" min="20" max="300" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 font-semibold focus:outline-none focus:border-yellow-400 text-white">
+      </div>
+
+      <!-- Calculate Trigger -->
+      <button id="calc-btn" class="btn-pop w-full py-4 bg-gradient-to-r from-red-600 via-rose-500 to-yellow-500 hover:brightness-110 text-white font-extrabold rounded-2xl text-lg tracking-wide uppercase mt-2">
+        Calculate BMI & Healthy Target
+      </button>
+    </div>
+
+    <!-- Output Section -->
+    <section id="results-card" class="mt-8 pt-6 border-t border-slate-700/60">
+      
+      <!-- Mascot Card -->
+      <div class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-700/50 mb-6">
+        <div id="mascot-emoji" class="text-4xl p-3 bg-slate-800 rounded-2xl border border-slate-700 shrink-0">🏃‍♂️</div>
+        <div>
+          <p class="text-xs uppercase tracking-wider font-bold text-slate-400" id="age-range-tag">Adult Reference Standard (18-64)</p>
+          <h2 class="text-xl font-bold flex items-center gap-2">
+            BMI: <span id="bmi-val" class="text-yellow-400 font-extrabold">22.9</span>
+            <span id="bmi-status" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Healthy</span>
+          </h2>
+          <p class="text-xs text-slate-300 mt-0.5">Healthy Weight Goal: <strong id="healthy-range-text" class="text-white">56.7 kg - 76.3 kg</strong></p>
+        </div>
+      </div>
+
+      <!-- Interactive BMI Bar -->
+      <div class="mb-4">
+        <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5 px-0.5">
+          <span>BMI Spectrum</span>
+          <span id="marker-pos-label" class="text-yellow-300 font-mono">Current: 22.9</span>
+        </div>
+
+        <div class="relative w-full h-8 pt-2">
+          <div class="w-full h-4 rounded-full bg-gradient-to-r from-blue-500 via-emerald-400 via-yellow-400 to-red-500 shadow-inner"></div>
+          <div id="bmi-needle" class="absolute top-0 flex flex-col items-center">
+            <div class="w-3.5 h-3.5 bg-white border-2 border-slate-900 rounded-full shadow-lg"></div>
+            <div class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-white"></div>
+          </div>
+        </div>
+
+        <div class="flex justify-between text-[11px] font-bold text-slate-400 mt-1 px-1">
+          <span>Under (16)</span>
+          <span>18.5</span>
+          <span>25.0</span>
+          <span>30.0</span>
+          <span>Obese (40)</span>
+        </div>
+      </div>
+
+      <!-- Dietary Guidance Box -->
+      <div id="diet-box" class="bg-slate-900/70 border border-slate-700/60 rounded-2xl p-4 mt-6">
+        <h3 class="text-sm font-bold text-yellow-400 uppercase tracking-wide mb-1" id="diet-headline">Balanced Maintenance Protocol</h3>
+        <p class="text-xs text-slate-300 leading-relaxed mb-3" id="diet-summary">Maintain clean nutritional baseline with steady protein, healthy lipids, and micronutrient-rich complex carbs.</p>
+        
+        <div class="text-xs font-semibold text-slate-400 mb-2">Recommended Whole Foods (Click to view source):</div>
+        <div class="flex flex-wrap gap-2" id="food-badges">
+          <!-- Food tags injected via app.js -->
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Store/Buy Modal -->
+  <div id="buy-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
+      <div id="modal-icon" class="text-5xl mb-3">🥑</div>
+      <h3 id="modal-title" class="text-xl font-extrabold text-white mb-1">Avocados</h3>
+      <p id="modal-desc" class="text-xs text-slate-300 mb-4">High monounsaturated healthy fats and potassium.</p>
+      
+      <div class="space-y-2 mb-4">
+        <a id="link-amazon" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-white transition-all">
+          <span>Amazon Fresh</span>
+          <span class="text-yellow-400">Order Online →</span>
+        </a>
+        <a id="link-instacart" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-white transition-all">
+          <span>Instacart / Local Grocery</span>
+          <span class="text-emerald-400">Deliver in 1 hr →</span>
+        </a>
+      </div>
+
+      <p class="text-[10px] text-slate-500">As an affiliate partner, we may earn commissions from qualifying purchases.</p>
+    </div>
+  </div>
+
+  <!-- Custom Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>
