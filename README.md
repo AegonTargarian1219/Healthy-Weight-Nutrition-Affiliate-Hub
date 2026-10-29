@@ -1,83 +1,65 @@
-# FitPulse | Healthy Weight & Fitness Affiliate Marketing Platform
+# NutriiFit | Smart Health, Nutrition & Fitness Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-A modern, responsive single-page application built for affiliate marketing, clinical healthy weight estimation, personalized nutrition plans, and gym routines tailored to Body Mass Index (BMI).
+**NutriiFit** is an all-in-one health, nutrition, and exercise advisory web platform designed for high-conversion affiliate marketing. It calculates healthy weight ranges using clinical BMI benchmarks, provides targeted whole-food meal plans, and showcases exercise postures using **animated die-cut gym athlete stickers**.
 
 ---
 
-## ✨ Features
+## 🌟 What's New in NutriiFit
 
-- **Clinical BMI & Weight Range Engine:**
-  - Standard WHO categories for adults (<18.5 Underweight, 18.5 - 24.9 Normal, 25 - 29.9 Overweight, 30+ Obese).
-  - Geriatric clinical adjustment (ages 65+) providing an adjusted reference buffer ($22.0 - 27.0\ 	ext{kg/m}^2$).
-  - Seamless unit toggle between **Metric** (cm, kg) and **Imperial** (ft/in, lbs).
-  - Dynamic BMI gauge bar with real-time pointer alignment.
-
-- **Dynamic Body Composition Mascots:**
-  - Real-time animated vector avatar stickers that adjust based on the user's BMI (Leaner character, Athletic high-five star, Motivated headband character).
-
-- **High-Converting Affiliate Nutrition Hub:**
-  - Calibrated diet plans (Clean Caloric Surplus, Metabolic Maintenance, Satiety Deficit).
-  - Interactive "Where to Buy" modal offering multi-retailer deep links (**Amazon Fresh**, **Instacart**, **iHerb / Whole Foods**).
-  - Built-in 1-click discount coupon code copy with toast feedback.
-  - Transparent FTC affiliate marketing disclosures.
-
-- **Advanced Gym Exercises & Supplement Engine:**
-  - Posture-illustrated compound gym routines with specific sets, reps, and target muscle groups.
-  - Curated supplement recommendations (Creatine Monohydrate, Whey Isolate, Mass Gainers, Multivitamins) complete with direct purchase links.
-
-- **UI / UX Polish:**
-  - Blue, Red, and Yellow multi-stop animated gradient background with glowing ambient orbs.
-  - Frosted glassmorphism containers (`backdrop-filter: blur(20px)`).
-  - Tactile 3D popping buttons with custom hover elevations and active push-down feedback.
+- **Die-Cut Graphic Stickers with Movable Exercise Animations:**
+  - High-detail vector bodybuilder stickers (thick die-cut border, realistic muscle contours, athletic caps, and weights) styled like the reference character.
+  - Animated mechanics:
+    - **Bicep Curls:** Arm curls the dumbbell up and down dynamically with peak contraction.
+    - **Squats:** Lifter squats down into the pocket with loaded barbell and plates.
+    - **Bench Press:** Barbell moves through eccentric and concentric pressing motions.
+    - **Romanian Deadlifts (RDL):** Torso hinges at the hips demonstrating safe hamstring stretch.
+    - **Cardio & Push-Ups:** Running gait tempo and bodyweight plank pressing animations.
+- **Top Corner Country & Currency Selector:**
+  - Dropdown supporting **India (₹ INR)**, **United States ($ USD)**, **United Kingdom (£ GBP)**, **Canada ($ CAD)**, **Australia ($ AUD)**, and **UAE (AED)**.
+  - Dynamically updates retailer links (Amazon India, Blinkit, Instamart, Zepto, HealthKart, Amazon Fresh US, Instacart, Tesco UK, etc.) and auto-converts local prices.
+- **Rebranded to NutriiFit:**
+  - Modern brand styling with high-vibrancy blue, red, and yellow animated background, glassmorphism cards, and popping buttons.
 
 ---
 
-## 🚀 Live Demo & Deployment
-
-This project is completely static (no backend required). You can deploy it instantly on:
-
-### Deploy to GitHub Pages:
-1. Push this repository to your GitHub account.
-2. Go to **Settings > Pages**.
-3. Under **Build and deployment**, select `main` (or `master`) branch and `/ (root)` folder.
-4. Click **Save**. Your site will be live at `https://<your-username>.github.io/<repo-name>/`.
-
-### Deploy to Vercel / Netlify / Cloudflare Pages:
-- Simply drag and drop the folder into Netlify Drop, or connect the GitHub repository to Vercel or Cloudflare Pages.
-
----
-
-## 📂 Repository File Structure
+## 📂 File Structure
 
 ```
-├── index.html          # Main HTML structure with 3 structured views & modals
-├── style.css           # Custom CSS for gradients, glassmorphism, 3D buttons & keyframes
-├── script.js           # Core state machine, BMI math, dynamic SVG mascots & affiliate modals
-├── LICENSE             # MIT open-source license
-├── .gitignore          # Git exclusion rules for OS files & IDE caches
-└── README.md           # Project documentation and setup guide
+NutriiFit-App/
+├── index.html        # Clean 3-view structure (Calc -> Food -> Exercises) + Country Dropdown
+├── style.css         # Die-cut sticker shadows, CSS keyframe animations, 3D popping buttons
+├── script.js         # BMI calculations, vectorized animated stickers, country/affiliate engine
+├── README.md         # Documentation & setup guide
+├── LICENSE           # MIT Open-Source License
+└── .gitignore        # Standard exclusions
 ```
 
 ---
 
-## 🛠️ Configuration & Affiliate ID Customization
+## 🚀 How to Upload to GitHub & Deploy
 
-To insert your personal affiliate IDs for monetization:
-
-1. Open `script.js`.
-2. Search for `fitpulse-20` and replace it with your own Amazon Associates tracking ID:
-   ```javascript
-   `https://www.amazon.com/s?k=${encodedQuery}&tag=YOUR_AMAZON_TAG`
+1. Clone or create a new repository on your GitHub account (e.g., `nutriifit`).
+2. Extract this ZIP archive into your local repository directory.
+3. Commit and push:
+   ```bash
+   git init
+   git add .
+   git commit -m "feat: launch NutriiFit with movable stickers and country selector"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/nutriifit.git
+   git push -u origin main
    ```
-3. Update Instacart, iHerb, or local affiliate links as needed in the `openAffiliateModal` and `renderWorkoutSection` functions.
+4. **Deploy for free:**
+   - Go to your repository's **Settings > Pages**.
+   - Under **Build and deployment**, pick `main` branch and `/ (root)` folder.
+   - Click **Save**. Your site will be live at `https://<your-username>.github.io/nutriifit/`.
 
 ---
 
 ## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License.
